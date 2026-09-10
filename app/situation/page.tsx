@@ -1,0 +1,11 @@
+import { assetPath } from "../asset-path";
+import { ContentPage } from "../content-page";
+
+const provinces = ["Ituri", "Nord-Kivu", "Haut-Uélé", "Tshopo", "Sud-Kivu", "Bas-Uélé"];
+
+export default function SituationPage() {
+  return <ContentPage active="situation" kicker="Situation officielle" title={<>Une photographie datée,<br />jamais présentée comme du temps réel.</>} lead="La situation évolue. Cette page distingue les faits du dernier rapport intégré au prototype et l’orientation qui reste valable aujourd’hui : appeler le 151 en cas de suspicion.">
+    <section className="band band-white"><div className="shell situation-grid"><div className="snapshot-card" data-bento data-reveal><p className="kicker accent">Instantané documentaire</p><time dateTime="2026-09-08">8 septembre 2026</time><h2>Flambée de maladie à virus Ebola causée par le virus Bundibugyo</h2><p>Le SitRep national n°117 mentionne six provinces et 61 zones de santé. Ces chiffres sont datés et ne doivent pas être interprétés comme une situation en direct.</p><a className="official-link" href="https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_117_08_09_2026.pdf" target="_blank" rel="noreferrer">Ouvrir le SitRep officiel</a></div><div className="visual-frame" data-bento data-reveal><img src={assetPath("/visuals/community-response.png")} alt="Communautés, soignants et autorités en République démocratique du Congo" /></div></div></section>
+    <section className="band band-cool"><div className="shell"><p className="kicker accent">Provinces mentionnées dans ce rapport</p><div className="province-grid">{provinces.map((province) => <article data-bento data-reveal key={province}><span aria-hidden="true">●</span><h2>{province}</h2><p>Présence dans l’instantané du 8 septembre. Pour une information actuelle, consultez le Ministère ou appelez le 151.</p></article>)}</div><aside className="official-note" data-bento data-reveal><span className="warning-symbol" aria-hidden="true">!</span><div><h3>Ne vous rendez pas directement dans un centre nommé.</h3><p>Les capacités et admissions changent rapidement. Le 151 vous indique la conduite à tenir avant tout déplacement.</p></div><a className="button button-primary" href="tel:151">Appeler le 151</a></aside></div></section>
+  </ContentPage>;
+}

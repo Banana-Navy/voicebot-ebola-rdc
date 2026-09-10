@@ -1,0 +1,19 @@
+# Voicebot Ebola — RDC
+
+Prototype trilingue d’information et d’orientation Ebola pour la République démocratique du Congo.
+
+## Limites
+
+- Ne pose aucun diagnostic.
+- Ne contacte pas les équipes sanitaires.
+- En cas de suspicion d’Ebola ou d’urgence sanitaire, appeler le 151.
+- Le 112 est réservé à la Police en cas de danger de sécurité distinct.
+- Les chiffres épidémiologiques affichés sont datés et ne sont pas du temps réel.
+
+## Pages
+
+- Accueil: https://banana-navy.github.io/voicebot-ebola-rdc/
+- Conduite à tenir: https://banana-navy.github.io/voicebot-ebola-rdc/agir/
+- Situation datée: https://banana-navy.github.io/voicebot-ebola-rdc/situation/
+- Sources: https://banana-navy.github.io/voicebot-ebola-rdc/sources/
+- Architecture: https://banana-navy.github.io/voicebot-ebola-rdc/architecture/

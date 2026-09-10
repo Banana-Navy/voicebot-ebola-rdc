@@ -1,0 +1,26 @@
+{
+  "agent_id": "agent_2401m265f99wezps3563sxv0a0va",
+  "name": "Voicebot Ebola — RDC — FR EN SW",
+  "status": "browser-demo-connected-no-phone-number",
+  "created_on": "2026-09-10",
+  "languages": ["fr", "en", "sw"],
+  "greeting_language": "fr",
+  "tts_model": "eleven_v3_conversational",
+  "voices": {
+    "fr": { "voice_id": "kRnE5e47lbU8Zg2MPQPm", "name": "Moussa FR" },
+    "en": { "voice_id": "xXFOA11TH5EKg661vj6I", "name": "The Englishman Alex" },
+    "sw": { "voice_id": "kRnE5e47lbU8Zg2MPQPm", "name": "Moussa FR", "status": "pilot_pending_congolese_swahili_review" }
+  },
+  "system_tools": ["language_detection", "end_call"],
+  "privacy": {
+    "record_voice": false,
+    "retention_days": 0,
+    "delete_audio": true,
+    "delete_transcript_and_pii": true,
+    "user_memory": false
+  },
+  "phone_number_attached": false,
+  "public_health_number": "151",
+  "police_number": "112",
+  "warning": "The 151 health number is never represented as the voicebot number. A Congolese inbound route remains to be validated with a local operator."
+}

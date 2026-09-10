@@ -1,0 +1,53 @@
+{
+  "jurisdiction": "CD",
+  "country": "République démocratique du Congo",
+  "last_verified": "2026-09-10",
+  "contacts": [
+    {
+      "id": "health_emergency_151",
+      "number": "151",
+      "label_fr": "Urgence sanitaire et signalement Ebola",
+      "label_en": "Health emergency and Ebola alert",
+      "label_sw": "Dharura ya afya na taarifa ya Ebola",
+      "priority_for_voicebot": 1,
+      "spoken": {
+        "fr": "un cinq un",
+        "en": "one five one",
+        "sw": "moja tano moja"
+      },
+      "official_sources": [
+        "https://sante.gouv.cd/epidemie",
+        "https://sante.gouv.cd/actualites/declaration-officielle-reapparition-de-la-maladie-a-virus-ebola-souche-zaire-a-boulape-b-u-l-a-p-e-kasai"
+      ],
+      "voicebot_rule": "Utiliser en priorité pour toute suspicion, exposition symptomatique, décès suspect ou urgence sanitaire liée à Ebola."
+    },
+    {
+      "id": "police_112",
+      "number": "112",
+      "label_fr": "Police nationale congolaise",
+      "label_en": "Congolese National Police",
+      "label_sw": "Polisi ya Taifa ya Kongo",
+      "priority_for_voicebot": 2,
+      "spoken": {
+        "fr": "un un deux",
+        "en": "one one two",
+        "sw": "moja moja mbili"
+      },
+      "official_sources": [
+        "https://saidiya.interieur.gouv.cd/contact"
+      ],
+      "voicebot_rule": "Ne citer que pour un danger de sécurité distinct. Ne jamais le présenter comme la ligne médicale ou Ebola."
+    }
+  ],
+  "excluded_contacts": [
+    {
+      "category": "media_contacts",
+      "reason": "Les contacts presse de l'OMS ne sont pas des lignes d'urgence et ne doivent pas être donnés aux appelants."
+    },
+    {
+      "category": "hospital_switchboards",
+      "reason": "Aucun numéro hospitalier national et stable n'a été confirmé comme voie officielle de signalement Ebola. Orienter vers le 151."
+    }
+  ]
+}
+

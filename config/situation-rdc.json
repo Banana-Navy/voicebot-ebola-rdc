@@ -1,0 +1,54 @@
+{
+  "status": "active",
+  "disease": "Maladie à virus Ebola causée par le virus Bundibugyo",
+  "declared_on": "2026-05-15",
+  "snapshot_date": "2026-09-08",
+  "published_on": "2026-09-09",
+  "source": "https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_117_08_09_2026.pdf",
+  "source_title": "SitRep N°117/MVEBDB/08/09/2026",
+  "voicebot_can_speak_snapshot_statistics": false,
+  "statistics": {
+    "confirmed_cases": 6843,
+    "confirmed_deaths": 3310,
+    "recovered": 1611,
+    "patients_in_isolation_or_treatment": 833,
+    "affected_provinces": 6,
+    "affected_health_zones": 61
+  },
+  "provinces": {
+    "Ituri": ["Adja", "Aru", "Ariwara", "Aungba", "Bambu", "Boga", "Bunia", "Damas", "Drodro", "Fataki", "Gethy", "Kambala", "Kilo", "Komanda", "Lita", "Logo", "Lolwa", "Mahagi", "Mambasa", "Mandima", "Mangala", "Mongbwalu", "Nia-Nia", "Nizi", "Nyankunde", "Rimba", "Rwampara", "Tchomia"],
+    "Nord-Kivu": ["Beni", "Biena", "Butembo", "Goma", "Kalunguta", "Katwa", "Kayna", "Kyondo", "Lubero", "Mabalako", "Manguredjipa", "Masereka", "Musienene", "Mutwanga", "Oicha", "Vuhovi"],
+    "Haut-Uélé": ["Boma Mangbetu", "Gombari", "Isiro", "Pawa", "Rungu", "Wamba"],
+    "Tshopo": ["Bafwasende", "Kabondo", "Lubunga", "Makiso-Kisangani", "Mangobo", "Tshopo", "Wanie-Rukula"],
+    "Sud-Kivu": ["Miti-Murhesa"],
+    "Bas-Uélé": ["Buta", "Viadana", "Ganga"]
+  },
+  "operational_facilities_mentioned_in_official_sources": [
+    {
+      "name": "Hôpital général de référence de Bunia",
+      "type": "HGR avec centre de traitement Ebola mentionné",
+      "routing_allowed": false
+    },
+    {
+      "name": "Centre de traitement Ebola de Nizi",
+      "type": "CTE mentionné",
+      "routing_allowed": false
+    },
+    {
+      "name": "Centre de traitement Ebola de Pawa",
+      "type": "CTE mentionné",
+      "routing_allowed": false
+    },
+    {
+      "name": "Hôpital général de référence Makiso-Kisangani",
+      "type": "HGR mentionné dans le SitRep",
+      "routing_allowed": false
+    },
+    {
+      "name": "Hôpital général de référence de Mongbwalu",
+      "type": "HGR avec capacité diagnostique mentionnée par l'OMS",
+      "routing_allowed": false
+    }
+  ],
+  "routing_note": "Les capacités et admissions changent rapidement. Le bot ne dirige jamais un cas suspect vers une structure nommée; il demande d'appeler le 151 et de suivre l'orientation officielle."
+}

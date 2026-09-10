@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://banana-navy.github.io/voicebot-ebola-rdc/sitemap.xml
