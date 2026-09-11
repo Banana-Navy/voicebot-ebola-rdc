@@ -14,7 +14,6 @@ const copy = {
     titleB: "face à Ebola",
     subtitle: "Un assistant vocal qui informe, répond aux questions et guide vers les bons gestes — sans diagnostic, sans rumeur et sans faux transfert.",
     talk: "Parler au voicebot",
-    emergency: "Urgence santé · 151",
     safe: "Le test du voicebot n’alerte pas les secours. Si une personne est malade ou si Ebola est suspecté, appelez immédiatement le 151.",
     stepsKicker: "Les bons gestes",
     stepsTitle: "Face à une suspicion, chaque geste compte.",
@@ -29,7 +28,6 @@ const copy = {
     titleB: "against Ebola",
     subtitle: "A voice assistant that informs, answers questions and guides people toward safer actions — without diagnosis, rumours or false transfers.",
     talk: "Talk to the voicebot",
-    emergency: "Health emergency · 151",
     safe: "The voicebot test does not alert emergency teams. If someone is ill or Ebola is suspected, call 151 immediately.",
     stepsKicker: "Protective actions",
     stepsTitle: "When Ebola is suspected, every action matters.",
@@ -44,7 +42,6 @@ const copy = {
     titleB: "dhidi ya Ebola",
     subtitle: "Msaidizi wa sauti anayetoa taarifa, kujibu maswali na kuelekeza watu kwenye hatua salama — bila kutambua ugonjwa au kueneza uvumi.",
     talk: "Zungumza na voicebot",
-    emergency: "Dharura ya afya · 151",
     safe: "Jaribio la voicebot haliarifu wahudumu wa dharura. Ikiwa mtu ni mgonjwa au unashuku Ebola, piga 151 mara moja.",
     stepsKicker: "Hatua salama",
     stepsTitle: "Ukishuku Ebola, kila hatua ni muhimu.",
@@ -91,8 +88,8 @@ export default function Home() {
 
   return <main>
     <div className="safety-strip home-safety-strip">Suspicion d’Ebola ou urgence sanitaire : <a href="tel:151"><strong>appelez le 151</strong></a></div>
+    <SiteHeader active="home" transparent onVoicebot={start} />
     <div className="home-stage">
-      <SiteHeader active="home" transparent onVoicebot={start} />
       <section className="home-hero" id="top">
         <picture className="hero-background-media">
           <source media="(max-width: 760px)" srcSet={assetPath("/visuals/hero-rdc-portrait.webp")} />
@@ -112,7 +109,6 @@ export default function Home() {
             </div>
             <div className="hero-actions" id="voicebot">
               <button className="button button-primary button-large cta-button" type="button" onClick={start}><CtaPhoneIcon /><span className="button-label">{t.talk}</span><span className="button-arrow" aria-hidden="true">→</span></button>
-              <a className="button button-secondary cta-button" href="tel:151"><CtaPhoneIcon /><span className="button-label">{t.emergency}</span></a>
             </div>
           </div>
         </div>

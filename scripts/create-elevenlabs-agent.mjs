@@ -8,7 +8,7 @@ const apiKey = process.env.ELEVENLABS_API_KEY;
 if (!apiKey) throw new Error("ELEVENLABS_API_KEY est absent.");
 
 const referenceAgentId = "agent_6301m0hrk7vbeyeadt55q1rc1xzv";
-const firstMessage = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.";
+const firstMessage = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, anglais ou kiswahili.";
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
 
 const referenceResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${referenceAgentId}`, { headers });
@@ -73,8 +73,8 @@ const presetTemplate = structuredClone(conversation.language_presets?.fr ?? conv
 if (!presetTemplate?.overrides) throw new Error("Modèle de preset de langue indisponible.");
 
 const languages = {
-  fr: { voiceId: "8R6pzcy1HIr4WcoApmzw", voiceName: "Amadou", modelId: "eleven_v3_conversational", speed: 1.05, stability: 0.38 },
-  en: { voiceId: "8R6pzcy1HIr4WcoApmzw", voiceName: "Amadou", modelId: "eleven_v3_conversational", speed: 1.05, stability: 0.38 },
+  fr: { voiceId: "8R6pzcy1HIr4WcoApmzw", voiceName: "Amadou", modelId: "eleven_v3_conversational", speed: 1.1, stability: 0.32 },
+  en: { voiceId: "8R6pzcy1HIr4WcoApmzw", voiceName: "Amadou", modelId: "eleven_v3_conversational", speed: 1.1, stability: 0.32 },
   sw: { voiceId: "3rh2STKG4ZtYFFPOUSR3", voiceName: "Kivu Health — Kiswahili naturel", modelId: "eleven_v3_conversational", speed: 1.04, stability: 0.4 },
 };
 
@@ -113,7 +113,7 @@ conversation.tts = {
   speed: languages.fr.speed,
   stability: languages.fr.stability,
   similarity_boost: 0.78,
-  expressive_mode: false,
+  expressive_mode: true,
   suggested_audio_tags: [],
   text_normalisation_type: "system_prompt",
   supported_voices: [],

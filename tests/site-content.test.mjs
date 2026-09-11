@@ -80,3 +80,16 @@ test("les CTA utilisent le combiné détouré sans glyphe générique", async ()
   assert.doesNotMatch(text, /☎/);
   assert.match(css, /\.cta-phone-icon[^}]+background: var\(--cream\)/);
 });
+
+test("le header reste épuré et le hero conserve un seul CTA", async () => {
+  const [page, chrome, css] = await Promise.all(["app/page.tsx", "app/site-chrome.tsx", "app/globals.css"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")));
+  const heroActions = page.match(/<div className="hero-actions"[\s\S]*?<\/div>/)?.[0] ?? "";
+  assert.doesNotMatch(chrome, /language-switch|>FR<|>EN<|>SW</);
+  assert.equal((heroActions.match(/cta-button/g) ?? []).length, 1);
+  assert.doesNotMatch(heroActions, /tel:151|button-secondary/);
+  assert.match(css, /\.site-header\.is-transparent \{ position: sticky;/);
+  assert.match(css, /\.site-header \.header-action \{ margin-left: auto; \}/);
+  assert.match(css, /\.site-header \.brand-lockup small \{ display: none; \}/);
+  assert.match(css, /\.hero-arguments article \{ background: #fff; \}/);
+  assert.match(css, /\[data-stack\] > \[data-bento\][^}]+opacity: 1 !important/);
+});

@@ -19,13 +19,16 @@ const [prompt, knowledge, contacts, situation, voicebot, scenarios] = await Prom
   readJson('tests/scenarios.json'),
 ]);
 
-const expectedGreeting = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.";
+const expectedGreeting = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, anglais ou kiswahili.";
 pass(prompt.includes(expectedGreeting), 'Le prompt ne contient pas le greeting français exact.');
 pass(voicebot.greeting.active_text === expectedGreeting, 'Le greeting de la configuration diverge du prompt.');
 pass(voicebot.default_language === 'fr', 'La langue initiale doit rester le français.');
 pass(voicebot.future_primary_language === 'sw', 'La cible future doit rester le kiswahili.');
 pass(JSON.stringify(voicebot.supported_languages) === JSON.stringify(['fr', 'en', 'sw']), 'Les langues doivent être fr, en et sw.');
 pass(voicebot.speech.tts_model === 'eleven_v3_conversational', 'Le modèle TTS doit prendre en charge le swahili.');
+pass(voicebot.speech.speed === 1.1, 'Le débit vocal doit rester naturel et dynamique.');
+pass(voicebot.speech.stability === 0.32, 'La stabilité doit préserver une intonation expressive.');
+pass(voicebot.speech.expressive_mode === true, 'Le mode expressif v3 doit rester actif.');
 pass(voicebot.speech.record_voice === false, "L'enregistrement audio doit être désactivé par défaut.");
 pass(voicebot.speech.retain_transcript === false, 'La rétention de transcription doit être désactivée par défaut.');
 pass(voicebot.speech.language_detection === true, 'La détection de langue doit rester active.');

@@ -9,14 +9,16 @@
   "future_primary_language": "sw",
   "greeting": {
     "active_language": "fr",
-    "active_text": "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.",
+    "active_text": "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, anglais ou kiswahili.",
     "future_swahili_text": "Jambo. Hii ni laini ya taarifa na maelekezo kuhusu Ebola katika Jamhuri ya Kidemokrasia ya Kongo. Ili kuendelea, sema Kiswahili, français au English."
   },
   "speech": {
     "tts_model": "eleven_v3_conversational",
     "asr_model": "scribe_v2_realtime",
     "turn_model": "turn_v3",
-    "speed": 1.05,
+    "speed": 1.1,
+    "stability": 0.32,
+    "expressive_mode": true,
     "record_voice": false,
     "retain_transcript": false,
     "max_duration_seconds": 900,

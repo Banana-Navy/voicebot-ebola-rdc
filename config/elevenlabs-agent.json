@@ -7,8 +7,8 @@
   "greeting_language": "fr",
   "tts_model": "eleven_v3_conversational",
   "voices": {
-    "fr": { "voice_id": "8R6pzcy1HIr4WcoApmzw", "name": "Amadou", "model_id": "eleven_v3_conversational", "speed": 1.05, "stability": 0.38 },
-    "en": { "voice_id": "8R6pzcy1HIr4WcoApmzw", "name": "Amadou", "model_id": "eleven_v3_conversational", "speed": 1.05, "stability": 0.38 },
+    "fr": { "voice_id": "8R6pzcy1HIr4WcoApmzw", "name": "Amadou", "model_id": "eleven_v3_conversational", "speed": 1.1, "stability": 0.32, "expressive_mode": true },
+    "en": { "voice_id": "8R6pzcy1HIr4WcoApmzw", "name": "Amadou", "model_id": "eleven_v3_conversational", "speed": 1.1, "stability": 0.32, "expressive_mode": true },
     "sw": { "voice_id": "3rh2STKG4ZtYFFPOUSR3", "name": "Kivu Health — Kiswahili naturel", "model_id": "eleven_v3_conversational", "speed": 1.04, "stability": 0.4, "status": "pilot_pending_congolese_swahili_review" }
   },
   "system_tools": ["language_detection", "end_call"],

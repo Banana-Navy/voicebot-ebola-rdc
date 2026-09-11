@@ -12,7 +12,7 @@ if (!response.ok) throw new Error(`Lecture impossible (${response.status}).`);
 
 const systemPrompt = await readFile(new URL("../agent/system-prompt.md", import.meta.url), "utf8");
 const knowledge = await readFile(new URL("../knowledge/base-connaissances.md", import.meta.url), "utf8");
-const firstMessage = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.";
+const firstMessage = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, anglais ou kiswahili.";
 
 // La voix française/anglaise par défaut utilise le modèle v3 et un débit naturel.
 // Les presets FR/EN/SW restent actifs afin que l'outil de langue applique aussi
@@ -20,14 +20,45 @@ const firstMessage = "Bonjour et bienvenue sur la ligne d'information et d'orien
 const naturalVoice = {
   voice_id: "8R6pzcy1HIr4WcoApmzw",
   model_id: "eleven_v3_conversational",
-  speed: 1.05,
-  stability: 0.38,
-  similarity_boost: 0.8,
-  expressive_mode: false,
+  speed: 1.1,
+  stability: 0.32,
+  similarity_boost: 0.78,
+  expressive_mode: true,
   suggested_audio_tags: [],
   text_normalisation_type: "system_prompt",
   optimize_streaming_latency: 0,
 };
+
+const swahiliVoice = {
+  voice_id: "3rh2STKG4ZtYFFPOUSR3",
+  model_id: "eleven_v3_conversational",
+  speed: 1.04,
+  stability: 0.4,
+  similarity_boost: 0.78,
+};
+
+// Le premier message utilise le TTS par défaut. Dès que language_detection
+// choisit le français, ElevenLabs applique le preset FR. Ces deux surfaces
+// doivent donc partager exactement la même voix et les mêmes réglages.
+const languageVoices = {
+  fr: naturalVoice,
+  en: naturalVoice,
+  sw: swahiliVoice,
+};
+
+const languagePresets = structuredClone(current.conversation_config.language_presets ?? {});
+for (const [language, voice] of Object.entries(languageVoices)) {
+  const preset = languagePresets[language];
+  if (!preset?.overrides) throw new Error(`Preset de langue ${language} introuvable.`);
+  preset.overrides.tts = {
+    ...(preset.overrides.tts ?? {}),
+    model_id: voice.model_id,
+    voice_id: voice.voice_id,
+    speed: voice.speed,
+    stability: voice.stability,
+    similarity_boost: voice.similarity_boost,
+  };
+}
 
 const agent = structuredClone(current.conversation_config.agent);
 agent.first_message = firstMessage;
@@ -55,6 +86,7 @@ const payload = {
   conversation_config: {
     agent,
     tts: { ...current.conversation_config.tts, ...naturalVoice },
+    language_presets: languagePresets,
     turn,
   },
   platform_settings: {
@@ -70,7 +102,7 @@ const payload = {
       user_memory: { enabled: false, scale: "balanced" },
     },
   },
-  version_description: "Voix Amadou v3 plus fluide, débit naturel, réponses continues FR EN SW",
+  version_description: "Voix Amadou harmonisée accueil et français, rassurante énergique assertive",
 };
 
 const update = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, {
@@ -88,5 +120,5 @@ console.log(JSON.stringify({
   language_detection_policy: result.conversation_config.agent.prompt.built_in_tools?.language_detection?.description,
   default_tts: result.conversation_config.tts,
   privacy: result.platform_settings?.privacy,
-  preserved_language_presets: Object.keys(result.conversation_config.language_presets ?? {}),
+  synchronized_language_presets: Object.keys(result.conversation_config.language_presets ?? {}),
 }, null, 2));

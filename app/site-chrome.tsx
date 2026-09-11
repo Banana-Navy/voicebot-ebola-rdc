@@ -31,9 +31,6 @@ export function SiteHeader({ active, transparent = false, onVoicebot }: { active
       <nav className={open ? "is-open" : ""} aria-label="Navigation principale">
         {nav.map((item) => <Link key={item.href} className={active === item.key ? "active" : ""} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
       </nav>
-      <div className="language-switch" aria-label="Langues parlées par le voicebot" title="Voicebot disponible en français, anglais et kiswahili">
-        <span className="active">FR</span><span>EN</span><span>SW</span>
-      </div>
       {onVoicebot ? <button className="button button-primary cta-button header-action" type="button" onClick={onVoicebot}><CtaPhoneIcon /><span className="button-label">Parler au bot</span></button> : <Link className="button button-primary cta-button header-action" href="/#voicebot"><CtaPhoneIcon /><span className="button-label">Parler au bot</span></Link>}
       <button className="menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
     </div>
