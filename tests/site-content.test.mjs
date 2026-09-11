@@ -89,6 +89,8 @@ test("le header reste épuré et le hero conserve un seul CTA", async () => {
   assert.match(chrome, /Données sécurisées/);
   assert.doesNotMatch(chrome, /Données minimisées/);
   assert.match(layout, /favicon-transparent-v2\.png/);
+  assert.match(layout, /icon: \[\{ url: `\$\{basePath\}\/visuals\/brand-mark-transparent-v2\.webp`, type: "image\/webp", sizes: "512x512" \}\]/);
+  assert.match(layout, /shortcut: `\$\{basePath\}\/visuals\/brand-mark-transparent-v2\.webp`/);
   assert.equal((heroActions.match(/cta-button/g) ?? []).length, 1);
   assert.doesNotMatch(heroActions, /tel:151|button-secondary/);
   assert.match(css, /\.site-header\.is-transparent \{ position: sticky;/);
