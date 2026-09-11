@@ -22,7 +22,7 @@ test("les trois langues et le greeting français restent publiés", async () => 
 
 test("tous les visuels éditoriaux retenus et leurs sources sont référencés", async () => {
   const text = (await Promise.all(["app/page.tsx", "app/agir/page.tsx", "app/sources/page.tsx", "app/technologie/page.tsx", "app/site-chrome.tsx", "app/sprite-icon.tsx", "app/layout.tsx", "scripts/crop-visuals.sh"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
-  for (const name of ["hero-rdc.webp", "capabilities-grid.png", "voicebot-flow.webp", "community-response.png", "voicebot-trust.webp", "prevention-icons-a.png", "prevention-icons-b.png", "platform-icons.png", "technology-hero.webp", "brand-mark.webp", "favicon.png"]) assert.match(text, new RegExp(name.replace(".", "\\.")));
+  for (const name of ["hero-rdc.webp", "hero-rdc-portrait.webp", "cta-phone.png", "capabilities-grid.png", "voicebot-flow.webp", "community-response.png", "voicebot-trust.webp", "prevention-icons-a.png", "prevention-icons-b.png", "platform-icons.png", "technology-hero.webp", "brand-mark.webp", "favicon.png"]) assert.match(text, new RegExp(name.replace(".", "\\.")));
 });
 
 test("les planches sont toujours découpées et jamais affichées comme des images groupées", async () => {
@@ -55,10 +55,28 @@ test("la navigation présente les flambées comme des épisodes datés", async (
 });
 
 test("les animations bento sont accessibles et couvrent le fallback pointerout", async () => {
-  const [effects, css] = await Promise.all(["app/use-site-effects.ts", "app/globals.css"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")));
+  const [effects, css, pages] = await Promise.all([
+    readFile(new URL("../app/use-site-effects.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    Promise.all(["app/page.tsx", "app/agir/page.tsx", "app/flambees/page.tsx", "app/sources/page.tsx", "app/technologie/page.tsx"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8"))).then((items) => items.join("\n")),
+  ]);
   assert.match(effects, /pointerout/);
   assert.match(effects, /pointerleave/);
   assert.match(effects, /\(hover: hover\) and \(pointer: fine\)/);
+  assert.match(effects, /requestAnimationFrame/);
+  assert.match(effects, /data-stack-active/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /\[data-bento\]/);
+  assert.match(css, /\[data-stack\] > \[data-bento\]/);
+  assert.equal((pages.match(/data-stack/g) ?? []).length, 16);
+});
+
+test("les CTA utilisent le combiné détouré sans glyphe générique", async () => {
+  const [page, chrome, outbreaks, css] = await Promise.all(["app/page.tsx", "app/site-chrome.tsx", "app/flambees/page.tsx", "app/globals.css"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")));
+  const text = `${page}\n${chrome}\n${outbreaks}`;
+  assert.match(chrome, /function CtaPhoneIcon/);
+  assert.match(chrome, /cta-phone\.png/);
+  assert.match(text, /cta-phone-icon/);
+  assert.doesNotMatch(text, /☎/);
+  assert.match(css, /\.cta-phone-icon[^}]+background: var\(--cream\)/);
 });

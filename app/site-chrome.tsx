@@ -19,6 +19,10 @@ export function Brand() {
   return <span className="brand-lockup"><img className="brand-mark-image" src={assetPath("/visuals/brand-mark.webp")} alt="" aria-hidden="true" /><span><b>VOICEBOT</b><em>EBOLA</em><small>Informer. Protéger. Agir.</small></span></span>;
 }
 
+export function CtaPhoneIcon() {
+  return <span className="cta-phone-icon" aria-hidden="true"><img src={assetPath("/visuals/cta-phone.png")} alt="" /></span>;
+}
+
 export function SiteHeader({ active, transparent = false, onVoicebot }: { active?: Active; transparent?: boolean; onVoicebot?: () => void }) {
   const [open, setOpen] = useState(false);
   return <header className={`site-header ${transparent ? "is-transparent" : ""}`}>
@@ -30,7 +34,7 @@ export function SiteHeader({ active, transparent = false, onVoicebot }: { active
       <div className="language-switch" aria-label="Langues parlées par le voicebot" title="Voicebot disponible en français, anglais et kiswahili">
         <span className="active">FR</span><span>EN</span><span>SW</span>
       </div>
-      {onVoicebot ? <button className="button button-primary header-action" type="button" onClick={onVoicebot}><span aria-hidden="true">☎</span>Parler au bot</button> : <Link className="button button-primary header-action" href="/#voicebot"><span aria-hidden="true">☎</span>Parler au bot</Link>}
+      {onVoicebot ? <button className="button button-primary cta-button header-action" type="button" onClick={onVoicebot}><CtaPhoneIcon /><span className="button-label">Parler au bot</span></button> : <Link className="button button-primary cta-button header-action" href="/#voicebot"><CtaPhoneIcon /><span className="button-label">Parler au bot</span></Link>}
       <button className="menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
     </div>
   </header>;
@@ -60,5 +64,5 @@ export function PageIntro({ kicker, title, children }: { kicker: string; title: 
 }
 
 export function PageCta() {
-  return <section className="page-cta"><div className="shell"><div><p className="kicker">Une question, une inquiétude ?</p><h2>Parlez au voicebot. Pour une suspicion, appelez le 151.</h2></div><div className="page-cta-actions"><Link className="button button-primary" href="/#voicebot">Parler au voicebot</Link><a className="button button-outline-light" href="tel:151">Urgence santé · 151</a></div></div></section>;
+  return <section className="page-cta"><div className="shell"><div><p className="kicker">Une question, une inquiétude ?</p><h2>Parlez au voicebot. Pour une suspicion, appelez le 151.</h2></div><div className="page-cta-actions"><Link className="button button-primary cta-button" href="/#voicebot"><CtaPhoneIcon /><span className="button-label">Parler au voicebot</span></Link><a className="button button-outline-light cta-button" href="tel:151"><CtaPhoneIcon /><span className="button-label">Urgence santé · 151</span></a></div></div></section>;
 }

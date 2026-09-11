@@ -16,7 +16,7 @@ const protocols = [
 
 export default function AgirPage() {
   return <ContentPage active="agir" kicker="Conduite à tenir" title={<>Protéger sans attendre.<br />Agir sans exposer les autres.</>} lead="Ces gestes ne remplacent pas l’évaluation des équipes sanitaires. Ils réduisent les contacts à risque pendant que vous demandez une orientation officielle.">
-    <section className="band band-white"><div className="shell"><div className="action-grid action-grid-wide">{actions.map(([col, row, title, text]) => <article className="content-card compact" key={title} data-bento data-reveal><SpriteIcon col={col} row={row} label={title} /><h2>{title}</h2><p>{text}</p></article>)}</div></div></section>
-    <section className="band band-sand"><div className="shell"><div className="protocol-grid">{protocols.map(([col, row, kicker, title, text]) => <article key={title} data-bento data-reveal><SpriteIcon sheet="b" col={col} row={row} label={kicker} /><p className={`kicker ${kicker === "Contact sans symptôme" ? "accent" : "red"}`}>{kicker}</p><h2>{title}</h2><p>{text}</p></article>)}</div></div></section>
+    <section className="band band-white"><div className="shell"><div className="action-grid action-grid-wide" data-stack>{actions.map(([col, row, title, text]) => <article className="content-card compact" key={title} data-bento data-reveal><SpriteIcon col={col} row={row} label={title} /><h2>{title}</h2><p>{text}</p></article>)}</div></div></section>
+    <section className="band band-sand"><div className="shell"><div className="protocol-grid" data-stack>{protocols.map(([col, row, kicker, title, text]) => <article key={title} data-bento data-reveal><SpriteIcon sheet="b" col={col} row={row} label={kicker} /><p className={`kicker ${kicker === "Contact sans symptôme" ? "accent" : "red"}`}>{kicker}</p><h2>{title}</h2><p>{text}</p></article>)}</div></div></section>
   </ContentPage>;
 }
