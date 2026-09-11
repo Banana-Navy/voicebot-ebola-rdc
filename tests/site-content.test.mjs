@@ -86,6 +86,8 @@ test("le header reste épuré et le hero conserve un seul CTA", async () => {
   const heroActions = page.match(/<div className="hero-actions"[\s\S]*?<\/div>/)?.[0] ?? "";
   assert.doesNotMatch(chrome, /language-switch|>FR<|>EN<|>SW</);
   assert.match(chrome, /brand-mark-transparent-v2\.webp/);
+  assert.match(chrome, /Données sécurisées/);
+  assert.doesNotMatch(chrome, /Données minimisées/);
   assert.match(layout, /favicon-transparent-v2\.png/);
   assert.equal((heroActions.match(/cta-button/g) ?? []).length, 1);
   assert.doesNotMatch(heroActions, /tel:151|button-secondary/);
@@ -96,6 +98,8 @@ test("le header reste épuré et le hero conserve un seul CTA", async () => {
   assert.match(css, /\.hero-arguments article \{ background: #fff; \}/);
   assert.match(css, /\.hero-actions \{[^}]*width: calc\(66\.6667% - 2px\);[^}]*margin: 13px 0 0;/);
   assert.match(css, /\.hero-actions \.button \{[^}]*width: 100%;[^}]*white-space: nowrap;/);
+  assert.match(css, /\.site-header\.is-transparent \.header-inner \{[^}]*max-width: none;[^}]*padding-inline: 2rem;/);
+  assert.match(css, /\.site-header\.is-transparent \.header-inner \{ height: 78px; padding-inline: clamp\(20px, 7\.6vw, 40px\); \}/);
   assert.match(css, /@media \(min-width: 761px\) \{[\s\S]*?\.home-stage \.hero-layout, \.home-stage \.hero-trust \{[^}]*max-width: none;[^}]*padding-inline: 2rem;/);
   assert.match(css, /\.hero-overlay \{ background: linear-gradient\(90deg, rgba\(226,241,252,1\)/);
   assert.match(css, /\[data-stack\] > \[data-bento\][^}]+opacity: 1 !important/);

@@ -106,6 +106,7 @@ p { text-wrap: pretty; }
 .trust-dot { width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px rgba(8,112,220,.12); }
 
 @media (min-width: 761px) {
+  .site-header.is-transparent .header-inner { width: 100%; max-width: none; margin-inline: 0; padding-inline: 2rem; }
   .home-stage .hero-layout, .home-stage .hero-trust { width: 100%; max-width: none; margin-inline: 0; padding-inline: 2rem; }
 }
 
@@ -397,7 +398,7 @@ p { text-wrap: pretty; }
   .header-action .cta-phone-icon { width: 43px; height: 43px; margin: 0; padding: 5px; }
   .header-action .button-label { display: none; }
   .menu-button { width: 42px; height: 42px; }
-  .site-header.is-transparent .header-inner { height: 78px; padding-inline: clamp(20px, 6vw, 32px); }
+  .site-header.is-transparent .header-inner { height: 78px; padding-inline: clamp(20px, 7.6vw, 40px); }
   .site-header.is-transparent .brand-mark-image { width: 43px; height: 43px; border-radius: 0; }
   .site-header.is-transparent .brand-lockup { gap: 9px; }
   .site-header.is-transparent .brand-lockup b, .site-header.is-transparent .brand-lockup em { font-size: 14px; }
@@ -483,7 +484,7 @@ p { text-wrap: pretty; }
 }
 
 @media (max-width: 450px) {
-  .site-header.is-transparent .header-inner { padding-inline: 17px; }
+  .site-header.is-transparent .header-inner { padding-inline: 19px; }
   .site-header.is-transparent .brand-mark-image { width: 40px; height: 40px; }
   .site-header.is-transparent .brand-lockup b, .site-header.is-transparent .brand-lockup em { font-size: 13px; }
   .site-header.is-transparent .header-action.cta-button { width: 40px; min-height: 40px; }
@@ -505,7 +506,7 @@ p { text-wrap: pretty; }
 }
 
 @media (max-width: 350px) {
-  .site-header.is-transparent .header-inner { gap: 4px; padding-inline: 10px; }
+  .site-header.is-transparent .header-inner { gap: 4px; padding-inline: 15px; }
   .site-header.is-transparent .brand-mark-image { width: 35px; height: 35px; }
   .site-header.is-transparent .brand-lockup { gap: 6px; }
   .site-header.is-transparent .brand-lockup b, .site-header.is-transparent .brand-lockup em { font-size: 11px; }

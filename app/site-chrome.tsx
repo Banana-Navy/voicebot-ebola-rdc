@@ -40,7 +40,7 @@ export function SiteHeader({ active, transparent = false, onVoicebot }: { active
 const commitments = [
   ["platform", 2, 0, "Réponses vocales"],
   ["platform", 4, 1, "Informations sanitaires"],
-  ["platform", 5, 1, "Données minimisées"],
+  ["platform", 5, 1, "Données sécurisées"],
   ["platform", 4, 2, "Trois langues"],
 ] as const;
 
