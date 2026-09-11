@@ -1,29 +1,29 @@
 # Base de connaissances contrôlée - Ebola RDC
 
-Version documentaire : 10 septembre 2026. Toute modification médicale doit être revue par une autorité sanitaire ou un clinicien mandaté avant déploiement.
+Version documentaire : 11 septembre 2026. Toute modification médicale doit être revue par une autorité sanitaire ou un clinicien mandaté avant déploiement.
 
-## 1. Situation officielle
+## 1. Flambée documentée
 
 La République démocratique du Congo fait face à une flambée active de maladie à virus Ebola causée par le virus Bundibugyo, déclarée le 15 mai 2026. Le Ministère de la Santé publie des rapports de situation réguliers. Les chiffres évoluent rapidement et ne doivent pas être récités par le bot sans source dynamique, datée et validée.
 
-Au 8 septembre 2026, le SitRep officiel recensait six provinces touchées : Ituri, Nord-Kivu, Haut-Uélé, Tshopo, Sud-Kivu et Bas-Uélé. Cette liste est une photographie historique, pas une garantie sur la situation au moment de l'appel.
+Au 9 septembre 2026, le SitRep officiel recensait six provinces touchées : Ituri, Nord-Kivu, Haut-Uélé, Tshopo, Sud-Kivu et Bas-Uélé. Cette liste est une photographie historique, pas une garantie sur la situation au moment de l'appel.
 
 Références :
 
 - Ministère de la Santé RDC, [Surveillance épidémiologique](https://sante.gouv.cd/epidemie).
-- Ministère de la Santé RDC, [SitRep N°117 du 8 septembre 2026](https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_117_08_09_2026.pdf).
+- Ministère de la Santé RDC, [SitRep N°118 du 9 septembre 2026](https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_118_09_09_2026.pdf).
 - OMS, [Ebola outbreak - DRC 2026](https://www.who.int/emergencies/situations/ebola-outbreak---drc-2026).
 
 ## 2. Numéros officiels en RDC
 
 **151** : urgence sanitaire et signalement Ebola. C'est la voie prioritaire du bot pour toute personne malade, exposition symptomatique, décès suspect ou contact avec des fluides.
 
-**112** : Police nationale congolaise. Ce numéro ne remplace pas le 151 et ne doit être cité que pour une menace de sécurité distincte.
+**112** : numéro traditionnel de la Police nationale congolaise selon la Primature. Sa joignabilité locale n'est pas confirmée par cette source. Il ne remplace pas le 151 et ne doit être cité que pour une menace de sécurité distincte, sans promettre une mise en relation.
 
 Références :
 
 - Ministère de la Santé RDC, [Surveillance épidémiologique - urgence 151](https://sante.gouv.cd/epidemie).
-- Ministère de l'Intérieur RDC, [Contact - Police 112](https://saidiya.interieur.gouv.cd/contact).
+- Primature de la RDC, [Compte rendu du Conseil des ministres du 24 avril 2026 - Police 112](https://www.primature.gouv.cd/wp-content/uploads/2026/04/COMPTE-RENDU-DE-LA-QUATRE-VINGT-SEPTIEME-REUNION-ORDINAIRE-DU-CONSEIL-DES-MINISTRES-DU-24-AVRIL-2026.pdf).
 
 ## 3. Ce qu'est Ebola
 
@@ -67,7 +67,7 @@ Référence : OMS, [Ebola disease - symptoms and diagnosis](https://www.who.int/
 ## 6. Que faire si une personne est malade
 
 1. Appeler immédiatement le 151.
-2. Éviter tout contact non protégé avec la personne, ses fluides, ses vêtements, sa literie et les objets souillés.
+2. Ne pas toucher la personne, ses fluides, ses vêtements, sa literie ni les objets souillés; laisser intervenir les équipes formées.
 3. Demander aux autres personnes de rester à distance.
 4. Ne pas utiliser un transport collectif pour aller à l'hôpital sans instruction des équipes sanitaires.
 5. Ne pas tenter de désinfecter soi-même une zone contaminée et ne pas retarder l'appel pour essayer un remède.
@@ -96,7 +96,7 @@ Le bot ne doit donc jamais promettre qu'un médicament ou un vaccin disponible p
 
 Références :
 
-- OMS, [Disease Outbreak News, 28 août 2026](https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON616).
+- OMS, [Disease Outbreak News, 10 septembre 2026](https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617).
 - OMS, [Guidelines for clinical management of filovirus disease](https://www.who.int/publications/i/item/B09774).
 
 ## 9. Survivants, grossesse et allaitement
@@ -120,7 +120,7 @@ Références :
 - OMS Afrique, [Community dialogue building trust, 3 septembre 2026](https://www.afro.who.int/countries/democratic-republic-of-congo/news/community-dialogue-building-trust-ebola-response-democratic-republic-congo).
 - OMS Afrique, [At the frontline of trust, 17 juin 2026](https://www.afro.who.int/countries/democratic-republic-congo/news/frontline-trust-day-julienne-anoko-whos-ebola-community).
 - OMS Afrique/AIRA, [Infodemic Trends Report, juin 2026](https://afro.who.int/countries/democratic-republic-of-congo/publication/infodemic-trends-report-special-issue-ebola-bundibugyo-virus-disease-01-30-june-2026).
-- OMS, [RCCE readiness and response toolkit: Ebola disease](https://www.who.int/activities/strengthening-community-readiness-for-health-emergencies).
+- OMS, [Risk communication and community engagement readiness and response toolkit: Ebola disease](https://www.who.int/publications/i/item/9789240110175).
 
 ## 11. Villes, zones et structures
 
@@ -131,7 +131,7 @@ Au 1er septembre 2026, l'OMS indiquait que l'Ituri disposait de vingt-cinq struc
 Références :
 
 - OMS Afrique, [Adapting care to an evolving Ebola outbreak, 7 septembre 2026](https://www.afro.who.int/countries/democratic-republic-of-congo/news/adapting-care-evolving-ebola-outbreak-democratic-republic-congo).
-- Ministère de la Santé RDC, [SitRep N°117](https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_117_08_09_2026.pdf).
+- Ministère de la Santé RDC, [SitRep N°118](https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_118_09_09_2026.pdf).
 
 ## 12. Réponses interdites
 
@@ -149,4 +149,3 @@ Le bot ne doit jamais :
 - prétendre avoir signalé le cas, appelé une ambulance ou géolocalisé l'appelant;
 - collecter des données médicales ou personnelles inutiles;
 - stigmatiser un malade, un survivant, une famille, une coutume ou une communauté.
-

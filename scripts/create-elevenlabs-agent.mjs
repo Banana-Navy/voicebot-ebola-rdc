@@ -8,7 +8,7 @@ const apiKey = process.env.ELEVENLABS_API_KEY;
 if (!apiKey) throw new Error("ELEVENLABS_API_KEY est absent.");
 
 const referenceAgentId = "agent_6301m0hrk7vbeyeadt55q1rc1xzv";
-const firstMessage = "Bonjour. Vous êtes sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, English ou Kiswahili.";
+const firstMessage = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.";
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
 
 const referenceResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${referenceAgentId}`, { headers });
@@ -50,7 +50,7 @@ if (!conversation.agent.prompt.built_in_tools.language_detection || !conversatio
 }
 
 Object.assign(conversation.agent.prompt.built_in_tools.language_detection, {
-  description: "EBOLA RDC — Au premier tour, dès que français, English ou Kiswahili est identifiable, appelle silencieusement cet outil avant tout texte, y compris si une urgence est décrite. Utilise fr, en ou sw uniquement. En cours d'appel, utilise l'outil avant de répondre dans une autre langue prise en charge. Après le résultat, poursuis sans rejouer l'accueil. Pour une langue non prise en charge, demande uniquement : Français, English ou Kiswahili ?",
+  description: "EBOLA RDC — Au premier tour, dès que français, anglais ou kiswahili est identifiable, appelle silencieusement cet outil avant tout texte. Utilise fr, en ou sw uniquement. Après le résultat, poursuis naturellement sans rejouer l'accueil. Pour une langue non prise en charge, demande uniquement : Français, English ou Kiswahili ?",
   pre_tool_speech: "off",
   force_pre_tool_speech: false,
   interruption_mode: "disable_during_tool_and_turn",
@@ -73,9 +73,9 @@ const presetTemplate = structuredClone(conversation.language_presets?.fr ?? conv
 if (!presetTemplate?.overrides) throw new Error("Modèle de preset de langue indisponible.");
 
 const languages = {
-  fr: { voiceId: "kRnE5e47lbU8Zg2MPQPm", voiceName: "Moussa FR", speed: 0.94 },
-  en: { voiceId: "xXFOA11TH5EKg661vj6I", voiceName: "The Englishman Alex", speed: 0.96 },
-  sw: { voiceId: "kRnE5e47lbU8Zg2MPQPm", voiceName: "Moussa FR — pilote kiswahili à valider", speed: 0.92 },
+  fr: { voiceId: "8R6pzcy1HIr4WcoApmzw", voiceName: "Amadou", modelId: "eleven_v3_conversational", speed: 1.05, stability: 0.38 },
+  en: { voiceId: "8R6pzcy1HIr4WcoApmzw", voiceName: "Amadou", modelId: "eleven_v3_conversational", speed: 1.05, stability: 0.38 },
+  sw: { voiceId: "3rh2STKG4ZtYFFPOUSR3", voiceName: "Kivu Health — Kiswahili naturel", modelId: "eleven_v3_conversational", speed: 1.04, stability: 0.4 },
 };
 
 conversation.language_presets = {};
@@ -87,9 +87,9 @@ for (const [language, settings] of Object.entries(languages)) {
   preset.overrides.agent.first_message = firstMessage;
   preset.overrides.agent.prompt = { llm: "claude-sonnet-4-5", backup_llm_config: { preference: "override", order: ["claude-haiku-4-5"] } };
   preset.overrides.tts = {
-    model_id: "eleven_v3_conversational",
+    model_id: settings.modelId,
     voice_id: settings.voiceId,
-    stability: 0.46,
+    stability: settings.stability,
     similarity_boost: 0.78,
     speed: settings.speed,
   };
@@ -108,14 +108,14 @@ conversation.conversation.max_duration_seconds = 900;
 conversation.conversation.file_input.enabled = false;
 conversation.tts = {
   ...conversation.tts,
-  model_id: "eleven_v3_conversational",
+  model_id: languages.fr.modelId,
   voice_id: languages.fr.voiceId,
   speed: languages.fr.speed,
-  stability: 0.46,
+  stability: languages.fr.stability,
   similarity_boost: 0.78,
-  expressive_mode: true,
+  expressive_mode: false,
   suggested_audio_tags: [],
-  text_normalisation_type: "elevenlabs",
+  text_normalisation_type: "system_prompt",
   supported_voices: [],
 };
 
@@ -137,7 +137,7 @@ platform.privacy = {
 };
 
 const payload = {
-  name: "Voicebot Ebola — RDC — FR EN SW",
+  name: "Voicebot Ebola — RDC — FR EN SW — Naturel v2",
   tags: ["ebola", "drc", "rdc", "fr-en-sw", "prototype", "no-diagnosis"],
   conversation_config: conversation,
   platform_settings: platform,

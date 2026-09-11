@@ -5,7 +5,7 @@ Socle de travail pour un voicebot d'information et d'orientation sur Ebola en R�
 ## Démonstration
 
 - Landing page : <https://banana-navy.github.io/voicebot-ebola-rdc/>
-- Agent ElevenLabs : `agent_2401m265f99wezps3563sxv0a0va`
+- Agent ElevenLabs : `agent_0401m2687nc4frqbr731emnmhtcy` (`Voicebot Ebola — RDC — FR EN SW — Naturel v2`)
 - Mode d’accès : conversation vocale dans le navigateur; aucun numéro téléphonique n’est attaché au bot.
 
 ## État du projet
@@ -15,10 +15,10 @@ Socle de travail pour un voicebot d'information et d'orientation sur Ebola en R�
 - Accueil actuel : français.
 - Cible ultérieure : accueil et parcours principal en kiswahili.
 - Agent ElevenLabs distant : créé et connecté à la landing page; greeting français, presets FR/EN/SW.
-- Landing page : réalisée avec les neuf visuels fournis, export statique et publication GitHub Pages.
+- Landing page : visuels éditoriaux retenus intégrés, planches d’icônes découpées individuellement, export statique et publication GitHub Pages.
 - Supabase : volontairement différé, car la première version ne doit collecter ni identité ni données médicales.
 
-Ce voicebot ne remplace pas un professionnel de santé. En RDC, le numéro sanitaire officiel vérifié est le **151**. Le **112** est le numéro de la Police nationale et ne doit pas être présenté comme la ligne Ebola.
+Ce voicebot ne remplace pas un professionnel de santé. En RDC, le numéro sanitaire officiel vérifié est le **151**. La Primature décrit le **112** comme numéro traditionnel de la Police, mais la source consultée ne confirme pas sa joignabilité locale; il ne doit jamais être présenté comme la ligne Ebola.
 
 ## Fichiers principaux
 

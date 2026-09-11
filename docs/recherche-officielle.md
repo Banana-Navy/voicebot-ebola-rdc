@@ -2,9 +2,9 @@
 
 ## Résumé exécutif
 
-Le projet doit être conçu comme une ligne d'information et d'orientation sanitaire, pas comme un outil de diagnostic ou une centrale d'urgence. La flambée active en République démocratique du Congo est causée par le virus Bundibugyo. Le dernier rapport national disponible lors de cette revue, daté du 8 septembre 2026 et publié le 9 septembre, fait état d'une transmission active dans six provinces et soixante et une zones de santé.^1
+Le projet doit être conçu comme une ligne d'information et d'orientation sanitaire, pas comme un outil de diagnostic ou une centrale d'urgence. La flambée active en République démocratique du Congo est causée par le virus Bundibugyo. Le dernier rapport national intégré lors de cette revue, daté du 9 septembre 2026 et publié le 10 septembre, fait état d'une transmission active dans six provinces et soixante et une zones de santé.^1
 
-Le numéro sanitaire national officiellement publié est le **151**. Il doit être prononcé immédiatement pour toute personne malade, tout décès suspect, toute exposition symptomatique ou tout contact avec des fluides. Le **112** est le numéro de la Police nationale congolaise; il ne doit jamais être présenté comme la ligne Ebola.^2,3
+Le numéro sanitaire national officiellement publié est le **151**. Il doit être prononcé immédiatement pour toute personne malade, tout décès suspect, toute exposition symptomatique ou tout contact avec des fluides. La Primature décrit le **112** comme numéro traditionnel de la Police nationale congolaise dans le contexte de sa relance; cette source ne confirme pas une joignabilité nationale continue. Il ne doit jamais être présenté comme la ligne Ebola ni comme un transfert garanti.^2,3
 
 Le bot doit fonctionner en français, anglais et kiswahili, avec un accueil français dans la première version. L'objectif ultérieur d'un parcours principalement kiswahili est techniquement compatible avec ElevenLabs : Eleven v3 Conversational prend en charge le swahili et Scribe v2 Realtime l'identifie avec une précision annoncée comme élevée. Une validation humaine reste indispensable, car la prise en charge d'une langue ne garantit ni une prosodie congolaise naturelle ni l'exactitude des formulations de santé publique.^4,5
 
@@ -20,14 +20,14 @@ Cette décision doit être validée avant l'achat d'un numéro. Les contacts, in
 
 Le Ministère de la Santé de la RDC a déclaré la dix-septième flambée d'Ebola le 15 mai 2026, après confirmation du virus Bundibugyo par l'Institut national de recherche biomédicale. Les premières zones citées étaient Rwampara, Mongbwalu et Bunia, dans la province de l'Ituri.^6
 
-Au 8 septembre 2026, le SitRep national indiquait :
+Au 9 septembre 2026, le SitRep national indiquait :
 
 | Indicateur | Valeur datée |
 |---|---:|
-| Cas confirmés cumulés | 6 843 |
-| Décès confirmés cumulés | 3 310 |
-| Personnes guéries | 1 611 |
-| Patients en isolement ou centre de traitement | 833 |
+| Cas confirmés cumulés | 6 942 |
+| Décès confirmés cumulés | 3 349 |
+| Personnes guéries | 1 647 |
+| Patients en isolement ou centre de traitement | 823 |
 | Provinces touchées | 6 |
 | Zones de santé touchées | 61 |
 
@@ -55,7 +55,7 @@ Le bot ne doit pas dire qu'Ebola se transmet couramment par l'air. Il doit cepen
 
 ### Personne actuellement malade
 
-La priorité est l'appel immédiat au 151. Pendant l'attente des instructions : ne pas toucher la personne sans protection, éviter tout contact avec son sang, ses vomissures, ses selles, ses vêtements ou les objets souillés, et demander aux autres personnes de rester à distance. Le bot ne doit pas conseiller un nettoyage domestique ni un déplacement en transport collectif.^2,8
+La priorité est l'appel immédiat au 151. Pendant l'attente des instructions : ne pas toucher la personne, son sang, ses vomissures, ses selles, ses vêtements ou les objets souillés; demander aux autres personnes de rester à distance et laisser intervenir les équipes formées. Le bot ne doit pas conseiller un nettoyage domestique ni un déplacement en transport collectif.^2,8
 
 Le Ministère demande de signaler immédiatement tout cas suspect au centre de santé ou via le numéro vert 151, de ne pas toucher les malades suspects ni les corps non pris en charge, de ne pas manipuler ou consommer les animaux trouvés morts, de se laver les mains et de rejeter la stigmatisation.^2
 
@@ -85,7 +85,7 @@ Le SitRep et les communications de l'OMS mentionnent des structures à Bunia, Ni
 
 Ces noms sont utiles pour améliorer la reconnaissance vocale et comprendre un appelant. Ils ne constituent pas un annuaire stable. Les capacités peuvent être saturées, les sites peuvent changer et un déplacement spontané peut exposer d'autres personnes. Le bot doit donc répondre : « Les capacités des centres changent rapidement. Appelez le 151 pour recevoir l'orientation officielle avant de vous déplacer. »
 
-Les zones de santé répertoriées dans `config/situation-rdc.json` proviennent du SitRep national du 8 septembre. Elles servent aux tests de reconnaissance, jamais à affirmer qu'une zone est encore touchée ou sûre au moment de l'appel.
+Les zones de santé répertoriées dans `config/situation-rdc.json` proviennent du SitRep national du 9 septembre. Elles servent aux tests de reconnaissance, jamais à affirmer qu'une zone est encore touchée ou sûre au moment de l'appel. Le rapport mentionne aussi un cas importé à Bulu, dans le Sud-Ubangi, tout en conservant un total de six provinces affectées; le prototype ne déduit donc pas une septième province de cette seule mention.
 
 ## 8. Comment la riposte communique avec la population
 
@@ -180,13 +180,13 @@ La mise en production exige :
 
 ## Sources
 
-1. Ministère de la Santé Publique, Hygiène et Prévoyance Sociale, [« SitRep N°117/MVEBDB/08/09/2026 »](https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_117_08_09_2026.pdf), publié le 9 septembre 2026.
+1. Ministère de la Santé Publique, Hygiène et Prévoyance Sociale, [« SitRep N°118/MVEBDB/09/09/2026 »](https://administration.sante.gouv.cd/wp-content/uploads/2026/09/SitRep_MVEBDB_118_09_09_2026.pdf), publié le 10 septembre 2026.
 2. Ministère de la Santé Publique, Hygiène et Prévoyance Sociale, [« Déclaration officielle - réapparition de la maladie à virus Ebola »](https://sante.gouv.cd/actualites/declaration-officielle-reapparition-de-la-maladie-a-virus-ebola-souche-zaire-a-boulape-b-u-l-a-p-e-kasai), consignes de prévention et numéro 151.
-3. Ministère de l'Intérieur, Sécurité, Décentralisation et Affaires Coutumières, [« Contact »](https://saidiya.interieur.gouv.cd/contact), Police nationale 112.
+3. Primature de la RDC, [Compte rendu du Conseil des ministres du 24 avril 2026](https://www.primature.gouv.cd/wp-content/uploads/2026/04/COMPTE-RENDU-DE-LA-QUATRE-VINGT-SEPTIEME-REUNION-ORDINAIRE-DU-CONSEIL-DES-MINISTRES-DU-24-AVRIL-2026.pdf), mention du numéro traditionnel 112 dans le cadre de la relance du centre d'appels de la Police nationale congolaise.
 4. ElevenLabs, [« Models »](https://elevenlabs.io/docs/overview/models), langues d'Eleven v3 Conversational.
 5. ElevenLabs, [« Transcription »](https://elevenlabs.io/docs/overview/capabilities/speech-to-text/), Scribe v2 Realtime et prise en charge du swahili.
 6. OMS, [« Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda »](https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON602), 16 mai 2026.
-7. OMS, [« Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo »](https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON616), 28 août 2026.
+7. OMS, [« Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo »](https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617), 10 septembre 2026.
 8. OMS, [« Ebola disease »](https://www.who.int/news-room/fact-sheets/detail/ebola-disease), fiche d'information.
 9. OMS Afrique, [« Community dialogue building trust in Ebola response in the Democratic Republic of the Congo »](https://www.afro.who.int/countries/democratic-republic-of-congo/news/community-dialogue-building-trust-ebola-response-democratic-republic-congo), 3 septembre 2026.
 10. OMS, [« WHO guidelines for the clinical management of filovirus disease »](https://www.who.int/publications/i/item/B09774), 11 juin 2026.
@@ -198,4 +198,3 @@ La mise en production exige :
 16. Twilio, [« Voice Guidelines »](https://www.twilio.com/en-us/guidelines/voice), liste des juridictions de numéros Voice.
 17. Twilio, [« Programmable Voice pricing - Democratic Republic of the Congo »](https://www.twilio.com/voice/pricing/cd), appels sortants et BYOC.
 18. Supabase, [« Available regions »](https://supabase.com/docs/guides/platform/regions), résidence et régions de projet.
-

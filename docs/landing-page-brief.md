@@ -16,7 +16,7 @@ La majorité du parcours doit rester utile sur un téléphone peu puissant et un
 4. **Transmission et prévention** - fluides, objets, corps, animaux sauvages.
 5. **Traitement et vaccination** - soins précoces, spécificité Bundibugyo.
 6. **Rumeurs et questions** - réponses respectueuses et factuelles.
-7. **Situation officielle** - lien vers le Ministère, sans chiffres automatiques en v1.
+7. **Flambées documentées** - épisodes et instantanés datés, avec lien vers le Ministère et sans chiffres automatiques en v1.
 8. **Sources** - Ministère, INSP, OMS, UNICEF et Africa CDC.
 9. **Confidentialité** - ce que le voicebot collecte ou ne collecte pas.
 10. **Mentions légales** - responsable du service et limites.
@@ -38,7 +38,7 @@ Actions :
 Trois actions seulement :
 
 1. Appelez le 151.
-2. Ne touchez pas la personne ou les fluides sans protection; éloignez les autres.
+2. Ne touchez pas la personne, le corps ou les fluides; éloignez les autres et laissez intervenir les équipes formées.
 3. N'utilisez pas un transport collectif vers l'hôpital sans instruction sanitaire.
 
 ## Bloc « Symptômes »
@@ -50,7 +50,7 @@ Présenter séparément les symptômes précoces et ceux qui peuvent suivre. Év
 | Numéro | Usage |
 |---|---|
 | 151 | Urgence sanitaire et signalement Ebola |
-| 112 | Police nationale, uniquement pour un danger de sécurité |
+| 112 | Numéro traditionnel de la Police, uniquement pour un danger de sécurité; joignabilité locale à confirmer |
 
 Ne pas publier de contact média de l'OMS, de numéro belge ou de standard hospitalier non validé.
 
@@ -98,4 +98,3 @@ Lors de la prochaine étape, fournir si possible :
 ## Mesure sans données de santé
 
 Mesurer uniquement des événements agrégés : ouverture du widget, langue choisie, clic vers 151, page consultée. Ne jamais envoyer le texte ou l'audio de la conversation vers un outil d'analytics public.
-

@@ -19,7 +19,7 @@ const [prompt, knowledge, contacts, situation, voicebot, scenarios] = await Prom
   readJson('tests/scenarios.json'),
 ]);
 
-const expectedGreeting = "Bonjour. Vous êtes sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, English ou Kiswahili.";
+const expectedGreeting = "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.";
 pass(prompt.includes(expectedGreeting), 'Le prompt ne contient pas le greeting français exact.');
 pass(voicebot.greeting.active_text === expectedGreeting, 'Le greeting de la configuration diverge du prompt.');
 pass(voicebot.default_language === 'fr', 'La langue initiale doit rester le français.');
@@ -28,6 +28,9 @@ pass(JSON.stringify(voicebot.supported_languages) === JSON.stringify(['fr', 'en'
 pass(voicebot.speech.tts_model === 'eleven_v3_conversational', 'Le modèle TTS doit prendre en charge le swahili.');
 pass(voicebot.speech.record_voice === false, "L'enregistrement audio doit être désactivé par défaut.");
 pass(voicebot.speech.retain_transcript === false, 'La rétention de transcription doit être désactivée par défaut.');
+pass(voicebot.speech.language_detection === true, 'La détection de langue doit rester active.');
+pass(voicebot.speech.language_detection_only_at_start === true, 'La détection de langue doit être limitée au début de la conversation.');
+pass(voicebot.system_tools.includes('language_detection') && voicebot.system_tools.includes('end_call'), 'Les outils système de langue et de clôture doivent rester actifs.');
 
 const contactNumbers = contacts.contacts.map(({ number }) => number);
 pass(contactNumbers.length === 2, 'Le registre doit contenir seulement les deux numéros officiels vérifiés.');
@@ -54,8 +57,8 @@ for (const forbidden of ['071 49 98 17', '+32', '1722', '1771']) {
 }
 
 pass(prompt.includes('validé par des locuteurs congolais'), 'Le garde-fou de validation du kiswahili est absent.');
-pass(prompt.includes('ne pose pas de diagnostic'), 'La limite de diagnostic est absente du prompt.');
-pass(prompt.includes("n'utilisez pas les transports en commun"), 'La consigne de ne pas utiliser les transports collectifs est absente.');
+pass(/ne poses? (?:jamais )?de diagnostic/i.test(prompt), 'La limite de diagnostic est absente du prompt.');
+pass(/n'utilisez pas les transports en commun/i.test(prompt), 'La consigne de ne pas utiliser les transports collectifs est absente.');
 pass(prompt.includes('Ne prononce jamais un nombre de cas'), 'La règle contre les chiffres périmés est absente.');
 pass(knowledge.includes('Seul un test de laboratoire peut confirmer Ebola'), 'La limite de confirmation par laboratoire est absente.');
 
@@ -79,4 +82,3 @@ if (failures.length) {
     privacy: { record_voice: false, retain_transcript: false },
   }, null, 2));
 }
-

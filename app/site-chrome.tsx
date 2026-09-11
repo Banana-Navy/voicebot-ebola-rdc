@@ -2,24 +2,24 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { assetPath } from "./asset-path";
 import { SpriteIcon } from "./sprite-icon";
 
-export type Locale = "fr" | "en" | "sw";
-type Active = "home" | "agir" | "situation" | "sources" | "architecture";
+type Active = "home" | "agir" | "flambees" | "sources" | "technologie";
 
 const nav = [
   { href: "/", label: "Accueil", key: "home" },
   { href: "/agir", label: "Que faire ?", key: "agir" },
-  { href: "/situation", label: "Situation", key: "situation" },
+  { href: "/flambees", label: "Flambées", key: "flambees" },
   { href: "/sources", label: "Sources", key: "sources" },
-  { href: "/architecture", label: "Architecture", key: "architecture" },
+  { href: "/technologie", label: "Technologie", key: "technologie" },
 ] as const;
 
 export function Brand() {
-  return <span className="brand-lockup"><span className="brand-mark" aria-hidden="true"><i>+</i></span><span><b>VOICEBOT</b><em>EBOLA</em><small>Informer. Protéger. Agir.</small></span></span>;
+  return <span className="brand-lockup"><img className="brand-mark-image" src={assetPath("/visuals/brand-mark.webp")} alt="" aria-hidden="true" /><span><b>VOICEBOT</b><em>EBOLA</em><small>Informer. Protéger. Agir.</small></span></span>;
 }
 
-export function SiteHeader({ active, transparent = false, locale = "fr", onLocaleChange, onVoicebot }: { active?: Active; transparent?: boolean; locale?: Locale; onLocaleChange?: (locale: Locale) => void; onVoicebot?: () => void }) {
+export function SiteHeader({ active, transparent = false, onVoicebot }: { active?: Active; transparent?: boolean; onVoicebot?: () => void }) {
   const [open, setOpen] = useState(false);
   return <header className={`site-header ${transparent ? "is-transparent" : ""}`}>
     <div className="shell header-inner">
@@ -27,8 +27,8 @@ export function SiteHeader({ active, transparent = false, locale = "fr", onLocal
       <nav className={open ? "is-open" : ""} aria-label="Navigation principale">
         {nav.map((item) => <Link key={item.href} className={active === item.key ? "active" : ""} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
       </nav>
-      <div className="language-switch" aria-label="Langue du site">
-        {(["fr", "en", "sw"] as Locale[]).map((lang) => <button key={lang} type="button" className={locale === lang ? "active" : ""} aria-pressed={locale === lang} onClick={() => onLocaleChange?.(lang)}>{lang === "sw" ? "SW" : lang.toUpperCase()}</button>)}
+      <div className="language-switch" aria-label="Langues parlées par le voicebot" title="Voicebot disponible en français, anglais et kiswahili">
+        <span className="active">FR</span><span>EN</span><span>SW</span>
       </div>
       {onVoicebot ? <button className="button button-primary header-action" type="button" onClick={onVoicebot}><span aria-hidden="true">☎</span>Parler au bot</button> : <Link className="button button-primary header-action" href="/#voicebot"><span aria-hidden="true">☎</span>Parler au bot</Link>}
       <button className="menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
@@ -39,7 +39,7 @@ export function SiteHeader({ active, transparent = false, locale = "fr", onLocal
 const commitments = [
   ["platform", 2, 0, "Réponses vocales"],
   ["platform", 4, 1, "Informations sanitaires"],
-  ["platform", 5, 1, "Vie privée protégée"],
+  ["platform", 5, 1, "Données minimisées"],
   ["platform", 4, 2, "Trois langues"],
 ] as const;
 
@@ -48,9 +48,9 @@ export function SiteFooter() {
     <div className="shell footer-grid">
       <div className="footer-identity"><Brand /><p>Un prototype d’information et d’orientation Ebola pour la République démocratique du Congo. Il ne remplace ni le Ministère de la Santé, ni le 151, ni un professionnel de santé.</p></div>
       <div><p className="kicker muted">Nos engagements</p><ul className="commitment-grid">{commitments.map(([sheet, col, row, label]) => <li key={label}><SpriteIcon sheet={sheet} col={col} row={row} /><b>{label}</b></li>)}</ul></div>
-      <div className="footer-emergency"><p className="kicker muted">Orientation officielle</p><a className="footer-number" href="tel:151">151</a><strong>Suspicion d’Ebola ou urgence sanitaire</strong><p>Appelez avant de vous déplacer. Le 112 est réservé à la Police en cas de danger de sécurité distinct.</p></div>
+      <div className="footer-contact"><p className="kicker muted">Contact</p><address><strong>Marc-Antoine Cajot</strong><a href="tel:+32495277044">+32 495 277 044</a><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><a href="https://www.banana-navy.ai" target="_blank" rel="noreferrer">www.banana-navy.ai</a><span>Rue Antoine de Saint-Exupéry 2<br />6041 Charleroi, Belgique</span></address></div>
     </div>
-    <div className="shell source-band"><p className="kicker muted">Références sanitaires</p><div><a href="https://sante.gouv.cd/epidemie" target="_blank" rel="noreferrer">Ministère de la Santé RDC</a><a href="https://www.who.int/health-topics/ebola" target="_blank" rel="noreferrer">Organisation mondiale de la Santé</a><a href="https://www.unicef.org/drcongo/" target="_blank" rel="noreferrer">UNICEF RDC</a></div></div>
+    <div className="shell source-band"><p className="kicker muted">Références sanitaires</p><div><a href="https://sante.gouv.cd/epidemie" target="_blank" rel="noreferrer">Ministère de la Santé RDC</a><a href="https://www.who.int/health-topics/ebola" target="_blank" rel="noreferrer">Organisation mondiale de la Santé</a><a href="https://www.unicef.org/drcongo/epidemie-ebola" target="_blank" rel="noreferrer">UNICEF RDC</a></div></div>
     <div className="shell legal-line"><span>© 2026 Voicebot Ebola — RDC</span><span>Prototype non officiel. Aucun diagnostic, aucune géolocalisation, aucun transfert automatique vers les secours.</span><div><Link href="/mentions-legales">Mentions légales</Link><Link href="/confidentialite">Confidentialité</Link><Link href="/sources">Sources</Link></div></div>
   </footer>;
 }

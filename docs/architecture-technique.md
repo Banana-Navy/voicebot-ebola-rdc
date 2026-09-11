@@ -17,7 +17,7 @@ Numéro local RDC ou widget web
               v
       Prompt + corpus contrôlé
       - 151 santé / Ebola
-      - 112 Police seulement
+      - 112 Police seulement, sans garantie de joignabilité locale
       - aucun chiffre temps réel
       - aucun routage hospitalier direct
 ```
@@ -35,7 +35,7 @@ Numéro local RDC ou widget web
 - RAG : désactivé au départ; le corpus est suffisamment court pour être injecté et audité.
 - Enregistrement et rétention : désactivés par défaut.
 
-Les voix ne sont pas codées en dur. Il faut auditionner une voix par langue, puis vérifier la prononciation de Bundibugyo, Ituri, Bunia, Mongbwalu, Rwampara, Nord-Kivu, Kisangani et des nombres 151/112. La voix kiswahili doit être évaluée par des locuteurs congolais.
+Les identifiants de voix et leurs réglages sont versionnés dans la configuration locale puis synchronisés vers l’agent distant. Il faut continuer à vérifier la prononciation de Bundibugyo, Ituri, Bunia, Mongbwalu, Rwampara, Nord-Kivu, Kisangani et des nombres 151/112. La voix kiswahili doit être évaluée par des locuteurs congolais.
 
 ### Téléphonie
 
@@ -57,7 +57,7 @@ Une future mise à jour automatique du SitRep doit être semi-automatique : le s
 
 ### Landing page
 
-La landing sera construite après réception des visuels. Un export statique suffit pour l'information, les sources et le widget ElevenLabs. Aucun backend n'est requis tant qu'il n'y a ni compte, ni formulaire, ni tableau de bord.
+La landing page est construite en Next.js et publiée sous forme d’export statique avec le widget ElevenLabs. Aucun backend n’est requis tant qu’il n’y a ni compte, ni formulaire, ni tableau de bord.
 
 ## Pourquoi Supabase est différé
 
@@ -82,11 +82,11 @@ Si Supabase est ajouté :
 - exécuter les advisors et tester chaque politique avant livraison;
 - valider la résidence des données et le cadre juridique avant création du projet.
 
-## Déploiement ElevenLabs prévu
+## Déploiement ElevenLabs actif
 
-Le fichier `build/elevenlabs-agent-package.json` regroupe la configuration fonctionnelle, le prompt et le corpus. La création distante doit être protégée par une confirmation explicite et ne sera ajoutée qu'après choix des voix et disponibilité d'une clé API.
+L’agent distant `agent_0401m2687nc4frqbr731emnmhtcy` est relié au widget public. Le fichier `build/elevenlabs-agent-package.json` regroupe la configuration fonctionnelle, le prompt et le corpus. Toute création ou mise à jour distante reste protégée par une confirmation explicite dans les scripts.
 
-La procédure distante devra :
+La procédure de synchronisation :
 
 1. lire l'agent ou un modèle de référence compatible avec le schéma courant;
 2. préserver un seul mécanisme d'outils, sans mélanger `tools` et `tool_ids`;
@@ -113,7 +113,7 @@ npm run validate
 npm run build:agent
 ```
 
-Après création distante :
+Avant toute ouverture opérationnelle :
 
 - cinq répétitions de chaque scénario critique;
 - inspection des transcriptions, pas seulement du statut de test;
@@ -122,4 +122,3 @@ Après création distante :
 - tests sur audio téléphonique huit kilohertz, bruit, silence et interruption;
 - vérification que le bot ne récite aucune statistique périmée;
 - vérification que le bot ne donne jamais un hôpital comme destination directe.
-

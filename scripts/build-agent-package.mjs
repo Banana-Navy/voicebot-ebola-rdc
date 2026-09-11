@@ -18,7 +18,7 @@ const [prompt, knowledge, config, contacts, situation] = await Promise.all([
 const payload = {
   schema_version: 1,
   generated_at: new Date().toISOString(),
-  deployment_status: 'blocked_until_human_approval_and_voice_selection',
+  deployment_status: 'browser_demo_active_public_launch_blocked_until_human_approval',
   configuration: config,
   controlled_content: {
     system_prompt: prompt,
@@ -47,4 +47,3 @@ console.log(JSON.stringify({
   system_prompt_sha256: payload.controlled_content.hashes.system_prompt_sha256,
   knowledge_base_sha256: payload.controlled_content.hashes.knowledge_base_sha256,
 }, null, 2));
-

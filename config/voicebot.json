@@ -3,30 +3,30 @@
   "jurisdiction": "CD",
   "platform": "ElevenLabs ElevenAgents",
   "status": "browser_demo_connected",
-  "agent_id": "agent_2401m265f99wezps3563sxv0a0va",
+  "agent_id": "agent_0401m2687nc4frqbr731emnmhtcy",
   "default_language": "fr",
   "supported_languages": ["fr", "en", "sw"],
   "future_primary_language": "sw",
   "greeting": {
     "active_language": "fr",
-    "active_text": "Bonjour. Vous êtes sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo. Pour continuer, dites français, English ou Kiswahili.",
+    "active_text": "Bonjour et bienvenue sur la ligne d'information et d'orientation Ebola pour la République démocratique du Congo, pour continuer, dites français, anglais ou kiswahili.",
     "future_swahili_text": "Jambo. Hii ni laini ya taarifa na maelekezo kuhusu Ebola katika Jamhuri ya Kidemokrasia ya Kongo. Ili kuendelea, sema Kiswahili, français au English."
   },
   "speech": {
     "tts_model": "eleven_v3_conversational",
     "asr_model": "scribe_v2_realtime",
     "turn_model": "turn_v3",
-    "speed": 0.92,
+    "speed": 1.05,
     "record_voice": false,
     "retain_transcript": false,
     "max_duration_seconds": 900,
     "language_detection": true,
-    "language_detection_only_at_start": false
+    "language_detection_only_at_start": true
   },
   "voice_selection": {
-    "fr": "kRnE5e47lbU8Zg2MPQPm",
-    "en": "xXFOA11TH5EKg661vj6I",
-    "sw": "kRnE5e47lbU8Zg2MPQPm — PILOT_ONLY_PENDING_CONGOLESE_SWAHILI_REVIEW"
+    "fr": "8R6pzcy1HIr4WcoApmzw — AMADOU_V3",
+    "en": "8R6pzcy1HIr4WcoApmzw — AMADOU_V3",
+    "sw": "3rh2STKG4ZtYFFPOUSR3 — KIVU_HEALTH_V3_PILOT_PENDING_CONGOLESE_SWAHILI_REVIEW"
   },
   "knowledge": {
     "mode": "controlled_prompt",
@@ -43,6 +43,6 @@
     "medical_and_operational_approval",
     "congolese_swahili_review",
     "official_drc_phone_route",
-    "live_transcript_and_audio_validation"
+    "human_live_audio_validation"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "jurisdiction": "CD",
   "country": "République démocratique du Congo",
-  "last_verified": "2026-09-10",
+  "last_verified": "2026-09-11",
   "contacts": [
     {
       "id": "health_emergency_151",
@@ -24,9 +24,9 @@
     {
       "id": "police_112",
       "number": "112",
-      "label_fr": "Police nationale congolaise",
-      "label_en": "Congolese National Police",
-      "label_sw": "Polisi ya Taifa ya Kongo",
+      "label_fr": "Numéro traditionnel de la Police nationale congolaise — joignabilité locale à confirmer",
+      "label_en": "Traditional Congolese National Police number — local availability must be confirmed",
+      "label_sw": "Nambari ya kawaida ya Polisi ya Taifa ya Kongo — upatikanaji wa eneo lazima uthibitishwe",
       "priority_for_voicebot": 2,
       "spoken": {
         "fr": "un un deux",
@@ -34,9 +34,9 @@
         "sw": "moja moja mbili"
       },
       "official_sources": [
-        "https://saidiya.interieur.gouv.cd/contact"
+        "https://www.primature.gouv.cd/wp-content/uploads/2026/04/COMPTE-RENDU-DE-LA-QUATRE-VINGT-SEPTIEME-REUNION-ORDINAIRE-DU-CONSEIL-DES-MINISTRES-DU-24-AVRIL-2026.pdf"
       ],
-      "voicebot_rule": "Ne citer que pour un danger de sécurité distinct. Ne jamais le présenter comme la ligne médicale ou Ebola."
+      "voicebot_rule": "Ne citer que pour un danger de sécurité distinct, sans garantir la mise en relation. Ne jamais le présenter comme la ligne médicale ou Ebola."
     }
   ],
   "excluded_contacts": [
@@ -50,4 +50,3 @@
     }
   ]
 }
-

@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { assetPath } from "./asset-path";
-import { Locale, PageIntro, SiteFooter, SiteHeader } from "./site-chrome";
+import { PageIntro, SiteFooter, SiteHeader } from "./site-chrome";
 import { SpriteIcon } from "./sprite-icon";
 import { useSiteEffects } from "./use-site-effects";
 import { useVoicebotPanel } from "./voicebot-panel";
@@ -11,8 +10,8 @@ import { useVoicebotPanel } from "./voicebot-panel";
 const copy = {
   fr: {
     eyebrow: "République démocratique du Congo",
-    titleA: "Une voix pour",
-    titleB: "stopper Ebola",
+    titleA: ["Une voix", "Pour informer,", "Rassurer et agir"],
+    titleB: "face à Ebola",
     subtitle: "Un assistant vocal qui informe, répond aux questions et guide vers les bons gestes — sans diagnostic, sans rumeur et sans faux transfert.",
     talk: "Parler au voicebot",
     emergency: "Urgence santé · 151",
@@ -26,8 +25,8 @@ const copy = {
   },
   en: {
     eyebrow: "Democratic Republic of the Congo",
-    titleA: "One voice to",
-    titleB: "stop Ebola",
+    titleA: ["One voice", "To inform,", "Reassure and act"],
+    titleB: "against Ebola",
     subtitle: "A voice assistant that informs, answers questions and guides people toward safer actions — without diagnosis, rumours or false transfers.",
     talk: "Talk to the voicebot",
     emergency: "Health emergency · 151",
@@ -41,8 +40,8 @@ const copy = {
   },
   sw: {
     eyebrow: "Jamhuri ya Kidemokrasia ya Kongo",
-    titleA: "Sauti moja ya",
-    titleB: "kuzuia Ebola",
+    titleA: ["Sauti moja", "Ya kutoa taarifa,", "Kutuliza na kuchukua hatua"],
+    titleB: "dhidi ya Ebola",
     subtitle: "Msaidizi wa sauti anayetoa taarifa, kujibu maswali na kuelekeza watu kwenye hatua salama — bila kutambua ugonjwa au kueneza uvumi.",
     talk: "Zungumza na voicebot",
     emergency: "Dharura ya afya · 151",
@@ -58,39 +57,54 @@ const copy = {
 
 const protectiveSteps = [
   { icon: [0, 0] as const, title: "Lavez-vous les mains", text: "Utilisez de l’eau et du savon. Évitez de toucher les fluides corporels ou des objets souillés." },
-  { icon: [1, 0] as const, title: "Évitez les contacts", text: "Ne touchez pas sans protection une personne malade, un corps ou les objets contaminés." },
+  { icon: [1, 0] as const, title: "Évitez les contacts", text: "Ne touchez pas une personne malade, un corps, des fluides ou des objets contaminés. Laissez intervenir les équipes formées." },
   { icon: [3, 2] as const, title: "Appelez le 151", text: "Signalez immédiatement une suspicion et suivez les instructions des équipes sanitaires." },
 ];
 
 const capabilities = [
-  { icon: [2, 0] as const, title: "Français, English, Kiswahili", text: "Un accueil français aujourd’hui, avec bascule vocale dans la langue choisie." },
-  { icon: [1, 3] as const, title: "Consignes contrôlées", text: "Les réponses sont limitées aux contenus officiels vérifiés et datés." },
-  { icon: [3, 1] as const, title: "Orientation prudente", text: "Le bot n’invente ni hôpital, ni disponibilité, ni itinéraire." },
-  { icon: [3, 3] as const, title: "Accessible à tous", text: "Des phrases courtes, une action à la fois et des limites clairement annoncées." },
+  { icon: [0, 0] as const, title: "Conversation vocale", text: "Une réponse orale immédiate depuis un smartphone, directement dans le navigateur." },
+  { icon: [1, 0] as const, title: "Corpus sourcé", text: "Les réponses s’appuient sur des publications sanitaires officielles identifiées." },
+  { icon: [2, 0] as const, title: "Trois langues", text: "Français, anglais et kiswahili, avec un accueil adapté à la population locale." },
+  { icon: [0, 1] as const, title: "Messages cohérents", text: "Une même consigne pour la population, les relais et les autorités." },
+  { icon: [1, 1] as const, title: "Vie privée", text: "Pas de nom, d’adresse complète ou de dossier médical demandé." },
+  { icon: [2, 1] as const, title: "Disponible 24 h / 24", text: "L’information générale reste accessible ; une suspicion va toujours au 151." },
+];
+
+const audiences = [
+  { icon: [0, 0] as const, title: "Familles", text: "Comprendre les premiers gestes sans exposer les proches." },
+  { icon: [1, 0] as const, title: "Communautés", text: "Répondre aux inquiétudes sans stigmatisation ni confrontation." },
+  { icon: [0, 1] as const, title: "Relais sanitaires", text: "Répéter une consigne courte, cohérente et traçable." },
+  { icon: [1, 1] as const, title: "Autorités et partenaires", text: "Diffuser un corpus contrôlé sans remplacer les canaux officiels." },
+];
+
+const facts = [
+  { sheet: "a" as const, icon: [3, 1] as const, title: "Les symptômes ne suffisent pas", text: "Fièvre, faiblesse, vomissements ou diarrhée peuvent avoir plusieurs causes. Seul un test de laboratoire confirme Ebola." },
+  { sheet: "a" as const, icon: [1, 0] as const, title: "Le contact direct est le risque central", text: "Évitez le sang, les fluides corporels et les objets souillés. Ne touchez jamais un corps ; laissez intervenir les équipes formées." },
+  { sheet: "b" as const, icon: [1, 3] as const, title: "Un contact doit être suivi", text: "Une personne ne transmet pas Ebola avant les symptômes, mais un contact doit suivre les consignes sanitaires pendant 21 jours." },
+  { sheet: "a" as const, icon: [1, 1] as const, title: "N’allez pas au hasard à l’hôpital", text: "Les capacités changent. Appelez le 151 et attendez l’orientation officielle avant de vous déplacer." },
 ];
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>("fr");
   const { start, panel } = useVoicebotPanel();
   useSiteEffects();
-  const t = copy[locale];
+  const t = copy.fr;
 
   return <main>
-    <div className="safety-strip">Suspicion d’Ebola ou urgence sanitaire : <a href="tel:151"><strong>appelez le 151</strong></a> · Danger de sécurité distinct : 112 Police</div>
+    <div className="safety-strip">Suspicion d’Ebola ou urgence sanitaire : <a href="tel:151"><strong>appelez le 151</strong></a></div>
     <div className="home-stage">
-      <SiteHeader active="home" transparent locale={locale} onLocaleChange={setLocale} onVoicebot={start} />
+      <SiteHeader active="home" transparent onVoicebot={start} />
       <section className="home-hero" id="top">
-        <img className="hero-background" src={assetPath("/visuals/hero-rdc.png")} alt="Centre de santé illustré en République démocratique du Congo" />
+        <img className="hero-background" src={assetPath("/visuals/hero-rdc.webp")} srcSet={`${assetPath("/visuals/hero-rdc-mobile.webp")} 760w, ${assetPath("/visuals/hero-rdc.webp")} 1672w`} sizes="100vw" alt="Centre de santé illustré en République démocratique du Congo" />
         <div className="hero-overlay" />
         <div className="shell hero-layout">
           <div className="hero-copy">
             <p className="hero-eyebrow" data-reveal>{t.eyebrow}</p>
-            <h1 data-reveal><span>{t.titleA}</span><strong>{t.titleB}</strong></h1>
+            <h1 data-reveal><span>{t.titleA.map((line) => <span className="hero-title-line" key={line}>{line}</span>)}</span><strong>{t.titleB}</strong></h1>
             <p className="hero-lead" data-reveal>{t.subtitle}</p>
             <div className="hero-arguments">
-              <article data-bento><SpriteIcon sheet="platform" col={2} row={0} /><span>Réponses<br />en temps réel</span></article>
-              <article data-bento><SpriteIcon sheet="platform" col={4} row={1} /><span>Conseils<br />fiables</span></article>
-              <article data-bento><SpriteIcon sheet="a" col={2} row={3} /><span>Accessible<br />à tous</span></article>
+              <article data-bento><SpriteIcon sheet="platform" col={2} row={0} /><span>Réponse vocale<br />immédiate</span></article>
+              <article data-bento><SpriteIcon sheet="platform" col={0} row={1} /><span>Consignes<br />sourcées</span></article>
+              <article data-bento><SpriteIcon sheet="platform" col={4} row={2} /><span>Français · English<br />Kiswahili</span></article>
             </div>
             <div className="hero-actions" id="voicebot">
               <button className="button button-primary button-large" type="button" onClick={start}><span aria-hidden="true">☎</span>{t.talk}<span aria-hidden="true">→</span></button>
@@ -102,21 +116,17 @@ export default function Home() {
       </section>
     </div>
 
-    <section className="trust-ribbon" aria-label="Principaux engagements"><div className="shell">
-      <span>24 h / 24</span><i /> <span>Trois langues</span><i /> <span>Sources officielles</span><i /> <span>Sans diagnostic</span><i /> <span>Vie privée par défaut</span>
-    </div></section>
-
     <section className="band band-sand" id="agir">
       <div className="shell"><PageIntro kicker={t.stepsKicker} title={t.stepsTitle}><p>{t.stepsLead}</p></PageIntro>
         <div className="three-card-grid stack-mobile">{protectiveSteps.map(({ icon, title, text }) => <article className="content-card" data-bento data-reveal key={title}><SpriteIcon col={icon[0]} row={icon[1]} label={title} /><span className="card-number">0{protectiveSteps.findIndex((item) => item.title === title) + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
-        <aside className="official-note" data-bento data-reveal><SpriteIcon col={2} row={2} label="Alerte" /><div><h3>Une personne est malade ou un décès paraît suspect ?</h3><p>Ne touchez pas la personne, le corps ou les fluides sans protection. Éloignez les autres et appelez immédiatement le 151.</p></div><a className="button button-primary" href="tel:151">Appeler le 151</a></aside>
+        <aside className="official-note" data-bento data-reveal><SpriteIcon col={2} row={2} label="Alerte" /><div><h3>Une personne est malade ou un décès paraît suspect ?</h3><p>Ne touchez pas la personne, le corps ou les fluides. Éloignez les autres, laissez intervenir les équipes formées et appelez immédiatement le 151.</p></div><a className="button button-primary" href="tel:151">Appeler le 151</a></aside>
       </div>
     </section>
 
-    <section className="band band-white" id="fonctionnement">
+    <section className="band band-white flow-section" id="fonctionnement">
       <div className="shell"><PageIntro kicker={t.flowKicker} title={t.flowTitle}><p>{t.flowLead}</p></PageIntro>
         <div className="visual-split">
-          <div className="visual-frame wide" data-bento data-reveal><img src={assetPath("/visuals/voicebot-flow.png")} alt="Parcours illustré de l’appelant vers le voicebot, les consignes officielles et la communauté" loading="lazy" /></div>
+          <div className="home-flow-visual"><img src={assetPath("/visuals/voicebot-flow.webp")} srcSet={`${assetPath("/visuals/voicebot-flow-mobile.webp")} 760w, ${assetPath("/visuals/voicebot-flow.webp")} 1683w`} sizes="(max-width: 760px) 100vw, 70vw" alt="Parcours illustré de l’appelant vers le voicebot, les consignes officielles et la communauté" loading="lazy" /></div>
           <ol className="flow-list">
             <li data-bento data-reveal><b>1</b><div><h3>Vous parlez</h3><p>Le voicebot écoute en français, anglais ou kiswahili.</p></div></li>
             <li data-bento data-reveal><b>2</b><div><h3>Il qualifie la demande</h3><p>Urgence, contact sans symptôme, information ou danger de sécurité.</p></div></li>
@@ -126,25 +136,23 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="band band-cool">
-      <div className="shell"><PageIntro kicker="Ce que le voicebot apporte" title={<>Toujours là quand l’information doit rester claire.</>}><p>Le système accompagne la population et relaie les consignes validées, tout en annonçant explicitement ce qu’il ne peut pas faire.</p></PageIntro>
-        <div className="capability-layout">
-          <div className="capability-grid">{capabilities.map(({ icon, title, text }) => <article className="mini-card" data-bento data-reveal key={title}><SpriteIcon sheet="platform" col={icon[0]} row={icon[1]} /><h3>{title}</h3><p>{text}</p></article>)}</div>
-          <div className="visual-frame portrait" data-bento data-reveal><img src={assetPath("/visuals/capabilities-grid.png")} alt="Illustrations du service vocal, des consignes officielles, des langues, des alertes et de la confidentialité" loading="lazy" /></div>
-        </div>
+    <section className="band band-cool capability-section">
+      <div className="shell"><PageIntro kicker="Ce que le voicebot apporte" title={<>Une information claire, accessible à tout moment.</>}><p>Le Voicebot Ebola accompagne la population avec des réponses vocales immédiates, fondées sur des sources sanitaires officielles identifiées. Il informe clairement, reste disponible 24 h / 24 et indique explicitement lorsqu’une situation dépasse son périmètre.</p></PageIntro>
+        <div className="capability-grid six">{capabilities.map(({ icon, title, text }) => <article className="mini-card visual-bento" data-bento data-reveal key={title}><SpriteIcon sheet="capabilities" col={icon[0]} row={icon[1]} label={title} /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </div>
     </section>
 
+    <section className="band band-white">
+      <div className="shell"><PageIntro kicker="Comprendre sans diagnostiquer" title={<>Quatre repères simples pour éviter les mauvaises décisions.</>}><p>Ces informations générales suivent la fiche Ebola de l’OMS. Une situation individuelle doit toujours être évaluée par les équipes sanitaires.</p></PageIntro><div className="fact-grid">{facts.map(({ sheet, icon, title, text }) => <article className="fact-card" data-bento data-reveal key={title}><SpriteIcon sheet={sheet} col={icon[0]} row={icon[1]} label={title} /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><p className="section-source">Source principale : <a href="https://www.who.int/news-room/fact-sheets/detail/ebola-disease" target="_blank" rel="noreferrer">Organisation mondiale de la Santé — fiche Ebola</a></p></div>
+    </section>
+
     <section className="band band-dark">
-      <div className="shell community-layout">
-        <div><p className="kicker red">Pour toute la communauté</p><h2>Une même consigne, de la famille aux autorités.</h2><p className="lead">Le voicebot ne remplace pas les relais locaux. Il aide à diffuser une information cohérente, sans stigmatiser les personnes malades, les survivants, les familles ou les communautés.</p><div className="dark-actions"><Link className="text-link light" href="/agir">Voir toutes les consignes</Link><Link className="text-link light" href="/situation">Consulter la situation officielle</Link></div></div>
-        <div className="visual-frame" data-bento data-reveal><img src={assetPath("/visuals/community-response.png")} alt="Familles, professionnels de santé et autorités congolaises illustrés" loading="lazy" /></div>
-      </div>
+      <div className="shell"><PageIntro kicker="Pour toute la communauté" title={<>Une même consigne, adaptée à chaque relais.</>}><p>Le voicebot ne remplace pas les personnes de confiance. Il aide à diffuser une information cohérente sans stigmatiser les malades, les survivants, les familles ou les communautés.</p></PageIntro><div className="audience-grid">{audiences.map(({ icon, title, text }) => <article data-bento data-reveal key={title}><SpriteIcon sheet="community" col={icon[0]} row={icon[1]} label={title} /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><div className="dark-actions"><Link className="text-link light" href="/agir">Voir toutes les consignes</Link><Link className="text-link light" href="/flambees">Consulter les flambées documentées</Link></div></div>
     </section>
 
     <section className="band band-cream">
       <div className="shell call-showcase">
-        <div className="visual-frame" data-bento data-reveal><img src={assetPath("/visuals/voicebot-trust.png")} alt="Voicebot Ebola illustré avec téléphone, document officiel et bouclier de confiance" loading="lazy" /></div>
+        <div className="call-showcase-visual"><img src={assetPath("/visuals/voicebot-trust.webp")} srcSet={`${assetPath("/visuals/voicebot-trust-mobile.webp")} 760w, ${assetPath("/visuals/voicebot-trust.webp")} 1448w`} sizes="(max-width: 760px) 100vw, 50vw" alt="Voicebot Ebola illustré avec téléphone, document officiel et bouclier de confiance" loading="lazy" /></div>
         <div><p className="kicker accent">Test vocal dans le navigateur</p><h2>Posez une question. Écoutez une réponse encadrée.</h2><p className="lead">Le greeting commence en français. Vous pouvez ensuite dire « français », « English » ou « Kiswahili ».</p><button className="button button-primary button-large" type="button" onClick={start}>Démarrer la conversation</button><p className="microcopy">Microphone requis · Aucun appel au 151 n’est déclenché automatiquement</p></div>
       </div>
     </section>
