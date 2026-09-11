@@ -22,7 +22,7 @@ test("les trois langues et le greeting français restent publiés", async () => 
 
 test("tous les visuels éditoriaux retenus et leurs sources sont référencés", async () => {
   const text = (await Promise.all(["app/page.tsx", "app/agir/page.tsx", "app/sources/page.tsx", "app/technologie/page.tsx", "app/site-chrome.tsx", "app/sprite-icon.tsx", "app/layout.tsx", "scripts/crop-visuals.sh"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
-  for (const name of ["hero-rdc.webp", "hero-rdc-portrait.webp", "cta-phone.png", "capabilities-grid.png", "voicebot-flow.webp", "community-response.png", "voicebot-trust.webp", "prevention-icons-a.png", "prevention-icons-b.png", "platform-icons.png", "technology-hero.webp", "brand-mark.webp", "favicon.png"]) assert.match(text, new RegExp(name.replace(".", "\\.")));
+  for (const name of ["hero-rdc.webp", "hero-rdc-portrait.webp", "cta-phone.png", "capabilities-grid.png", "voicebot-flow.webp", "community-response.png", "voicebot-trust.webp", "prevention-icons-a.png", "prevention-icons-b.png", "platform-icons.png", "technology-hero.webp", "brand-mark-transparent-v2.webp", "favicon-transparent-v2.png"]) assert.match(text, new RegExp(name.replace(".", "\\.")));
 });
 
 test("les planches sont toujours découpées et jamais affichées comme des images groupées", async () => {
@@ -82,16 +82,21 @@ test("les CTA utilisent le combiné détouré sans glyphe générique", async ()
 });
 
 test("le header reste épuré et le hero conserve un seul CTA", async () => {
-  const [page, chrome, css] = await Promise.all(["app/page.tsx", "app/site-chrome.tsx", "app/globals.css"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")));
+  const [page, chrome, css, layout] = await Promise.all(["app/page.tsx", "app/site-chrome.tsx", "app/globals.css", "app/layout.tsx"].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")));
   const heroActions = page.match(/<div className="hero-actions"[\s\S]*?<\/div>/)?.[0] ?? "";
   assert.doesNotMatch(chrome, /language-switch|>FR<|>EN<|>SW</);
+  assert.match(chrome, /brand-mark-transparent-v2\.webp/);
+  assert.match(layout, /favicon-transparent-v2\.png/);
   assert.equal((heroActions.match(/cta-button/g) ?? []).length, 1);
   assert.doesNotMatch(heroActions, /tel:151|button-secondary/);
   assert.match(css, /\.site-header\.is-transparent \{ position: sticky;/);
   assert.match(css, /\.site-header \.header-action \{ margin-left: auto; \}/);
   assert.match(css, /\.site-header \.brand-lockup small \{ display: none; \}/);
+  assert.match(css, /\.brand-mark-image \{[^}]*background: transparent;[^}]*box-shadow: none;/);
   assert.match(css, /\.hero-arguments article \{ background: #fff; \}/);
   assert.match(css, /\.hero-actions \{[^}]*width: calc\(66\.6667% - 2px\);[^}]*margin: 13px 0 0;/);
   assert.match(css, /\.hero-actions \.button \{[^}]*width: 100%;[^}]*white-space: nowrap;/);
+  assert.match(css, /@media \(min-width: 761px\) \{[\s\S]*?\.home-stage \.hero-layout, \.home-stage \.hero-trust \{[^}]*max-width: none;[^}]*padding-inline: 2rem;/);
+  assert.match(css, /\.hero-overlay \{ background: linear-gradient\(90deg, rgba\(226,241,252,1\)/);
   assert.match(css, /\[data-stack\] > \[data-bento\][^}]+opacity: 1 !important/);
 });

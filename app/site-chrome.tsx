@@ -16,7 +16,7 @@ const nav = [
 ] as const;
 
 export function Brand() {
-  return <span className="brand-lockup"><img className="brand-mark-image" src={assetPath("/visuals/brand-mark.webp")} alt="" aria-hidden="true" /><span><b>VOICEBOT</b><em>EBOLA</em><small>Informer. Protéger. Agir.</small></span></span>;
+  return <span className="brand-lockup"><img className="brand-mark-image" src={assetPath("/visuals/brand-mark-transparent-v2.webp")} alt="" aria-hidden="true" /><span><b>VOICEBOT</b><em>EBOLA</em><small>Informer. Protéger. Agir.</small></span></span>;
 }
 
 export function CtaPhoneIcon() {

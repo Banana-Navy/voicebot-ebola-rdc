@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   title: { default: "Voicebot Ebola — RDC", template: "%s — Voicebot Ebola RDC" },
   description: "Voicebot trilingue d’information et d’orientation Ebola pour la République démocratique du Congo, fondé sur des sources sanitaires officielles.",
   icons: {
-    icon: [{ url: `${basePath}/favicon.png`, type: "image/png", sizes: "128x128" }],
-    shortcut: `${basePath}/favicon.png`,
-    apple: `${basePath}/favicon.png`,
+    icon: [{ url: `${basePath}/favicon-transparent-v2.png`, type: "image/png", sizes: "128x128" }],
+    shortcut: `${basePath}/favicon-transparent-v2.png`,
+    apple: `${basePath}/favicon-transparent-v2.png`,
   },
   openGraph: { title: "Voicebot Ebola — RDC", description: "Informer. Protéger. Agir.", url: siteUrl, images: [`${siteUrl}/visuals/hero-rdc.webp`] },
 };
