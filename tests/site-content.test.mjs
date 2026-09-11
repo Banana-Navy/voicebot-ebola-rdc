@@ -91,5 +91,7 @@ test("le header reste épuré et le hero conserve un seul CTA", async () => {
   assert.match(css, /\.site-header \.header-action \{ margin-left: auto; \}/);
   assert.match(css, /\.site-header \.brand-lockup small \{ display: none; \}/);
   assert.match(css, /\.hero-arguments article \{ background: #fff; \}/);
+  assert.match(css, /\.hero-actions \{[^}]*width: calc\(66\.6667% - 2px\);[^}]*margin: 13px 0 0;/);
+  assert.match(css, /\.hero-actions \.button \{[^}]*width: 100%;[^}]*white-space: nowrap;/);
   assert.match(css, /\[data-stack\] > \[data-bento\][^}]+opacity: 1 !important/);
 });
